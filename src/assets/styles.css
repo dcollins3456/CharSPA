@@ -1,0 +1,669 @@
+@font-face {
+    font-family: "Metro";
+    src: url("fonts/Metro.otf");
+}
+
+@font-face {
+    font-family: "OpenSans";
+    src: url("fonts/OpenSans-Semibold.ttf");
+}
+
+@font-face {
+    font-family: "Zekton";
+    src: url("fonts/zekton_rg.otf");
+}
+
+body {
+    background-color: #4b0082;
+    background-image: url("graphics/bg.png");
+    background-attachment: fixed;
+    margin: 0;
+    color: #3355FF;
+}
+.content_bg {
+    background-image: url("graphics/bgc.png");
+    background-attachment: fixed;
+    margin: auto;
+    padding-top: 10px;
+    padding-right: -1px;
+    max-width: 1080px;
+    height: auto;
+    
+}
+.button{
+    display: inline-block;
+    outline: 0;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    border-radius: 4px;
+    font-size: 13px;
+    height: 20px;
+    background-color: #9147ff;
+    color: white;
+    padding: 0 20px;
+    margin-top: 6px;
+    margin-left: 20px;
+}
+.button:hover{
+    background-color: #772ce8;
+}
+.nav {
+    position: absolute;
+    background: black;
+    border-top: 1px solid white;
+    border-bottom: 1px solid white;
+    width: 1080px;
+    margin-left: 2px;
+    height: 34px;
+    z-index: 9;
+    list-style:none;
+    font-family: OpenSans;
+    font-size: 16px;
+    font-variant:small-caps;
+    
+}
+.nav a{
+    color:rgb(12, 233, 130);
+    text-decoration: none;
+    height: 100%;
+}
+.nav a:hover{
+    color: #7799FF;
+    text-decoration: double underline;
+    transition: color .35s ease-in-out;
+}
+.nav .nav-item{
+    float: left;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.error{
+    position: absolute;
+    z-index: 99;
+    font-family: OpenSans;
+    font-size: 100px;
+    color: red;
+}
+.character-sheet-content {
+    position: relative;
+    overflow: hidden;
+    width: 1060px;
+    height: 1867px;
+    background-image: url("graphics/charsheet_bg.png");
+    background-position-y: 0;
+    content-visibility: hidden;
+    margin-top: -24px;
+    margin-left: -1px;
+    padding-top: 54px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-left: 2px solid rgb(48, 0, 102);
+    border-right: 2px solid rgb(48, 0, 102);
+    z-index: 1;
+}
+.title {
+    font-family: metro;
+    color: #000000;
+    width: 1080px;
+    height: auto;
+    overflow: hidden;
+    padding-top: 8px;
+    position: absolute;
+
+}
+.title .charname {
+    font-size: 27pt;
+    text-shadow:
+    -1px -1px 0 #33CCff,
+    1px -1px 0 #33CCff,
+    -1px 1px 0 #33CCff,
+    1px 1px 0 #33CCff;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: #33CCff;
+}
+.title .sub{
+    height: 22px;
+    margin-top: -3px;
+}
+.title .playbook {
+    font-size: 20pt;
+    margin-right: 3px;
+    margin-left: 3px;
+    margin-top:-10px;
+    text-shadow:
+    -1px -1px 0 #800080,
+    1px -1px 0 #800080,
+    -1px 1px 0 #800080,
+    1px 1px 0 #800080;
+    float: left;
+}
+.title .the{
+    font-size: 10pt;
+    color: #800080FF;
+    margin-top: -4px;
+    float: left;
+}
+.title .pb_description{
+    font-size: 10pt;
+    color: #800080FF;
+    margin-top: 4px;
+    float: left;
+}
+.pb_xpbar {
+    position: absolute;
+    left: 850px;
+    top: 69px;
+}
+.portrait img{
+    position: absolute;
+    background: black;
+    border: 6px solid black;
+    top: 152px;
+    left: 5px;
+}
+.stressbar {
+    position: absolute;
+    top: 142px;
+    left: 345px;
+
+}
+.traumabar {
+    position: absolute;
+    top: 142px;
+    left: 665px;
+}
+.traumalist {
+    position: absolute;
+    left: 247px;
+    top: 198px;
+    font-family: OpenSans;
+    color: black;
+    font-size: 10pt;
+    font-variant: small-caps;
+}
+.traumalist div:not(:last-child){
+    float: left;
+    
+    border-right: 2px solid black;
+}
+.traumalist div{
+    float: left;
+    padding-right: 5px;
+    padding-left: 5px;
+    cursor: pointer;
+}
+.traumalist .i {
+    color: #CDCDCD;
+    font-family: OpenSans;
+    font-variant: small-caps;
+    font-style: italic;    
+    margin-left: -1px;
+    margin-right: 1px;
+}
+
+.character_description{
+    color: #AAAAAA;
+    font-family: Zekton;
+    
+    letter-spacing: .5px;
+    font-size: 10pt;
+}
+.character_description div{
+    max-width: 400px;
+    overflow-wrap: break-word;
+    overflow: hidden;
+    padding: 5px;
+}
+.alias {
+    position:absolute;
+    top: 232px;
+    left: 385px;
+    max-height: 20px;
+    overflow: hidden;
+}
+.alias:hover{
+    overflow: visible;
+    max-height: 20px;
+    background-color: #000000BB;
+    cursor:pointer;
+    transition-property: opacity;
+    transition: .1s ease-out;
+    z-index: 99;
+}
+.heritage {
+    position:absolute;
+    top: 269px;
+    left: 385px;
+    height: 40px;
+    overflow: hidden;
+}
+.heritage:hover{
+    overflow: visible;
+    max-height: 200px;
+    background-color: #000000BB;
+    cursor:pointer;
+    transition-property: opacity;
+    transition: .1s ease-out;
+    z-index: 99;
+    margin-bottom: -80px;
+}
+.background {
+    position:absolute;
+    top: 330px;
+    left: 385px;
+    max-height: 40px;
+    overflow: hidden;
+}
+.background:hover{
+    overflow: visible;
+    max-height: 200px;
+    background-color: #000000BB;
+    cursor:pointer;
+    transition-property: opacity;
+    transition: .1s ease-out;
+    z-index: 99;
+}
+.vice {
+    position:absolute;
+    top: 390px;
+    left: 385px;
+    overflow: hidden;
+    max-height: 20px;
+    overflow: hidden;
+    
+}
+.vice:hover{
+    overflow: visible;
+    max-height: 200px;
+    background-color: #000000BB;
+    cursor:pointer;
+    transition-property: opacity;
+    transition: .1s ease-out;
+    z-index: 99;
+}
+
+.look {
+    position:absolute;
+    left: 385px;
+    top: 427px;
+    max-height: 40px;
+    overflow: hidden;
+}
+.look:hover{
+    overflow: visible;
+    max-height: 200px;
+    background-color: #000000BB;
+    cursor:pointer;
+    transition-property: opacity;
+    transition: .1s ease-out;
+    z-index: 99;
+}
+.attribute_xpbars{
+    position: absolute;
+    left: 930px;
+    top: 155px;
+    padding-bottom: 150px;
+}
+.attribute_xpbars img{
+    padding-bottom:148px;
+}
+.attributes{
+    position: absolute;
+    left: 827px;
+    top: 195px;
+}
+.attributes img{
+    position: relative;
+    left: -3px;
+}
+.attributes div div {
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+.attributes .prowess {
+    position: relative;
+    top: 74px;
+}
+.attributes .resolve{
+    position: relative;
+    top: 148px;
+}
+.harmtable {
+    color: #33CCff;
+    font-family: OpenSans;
+    font-size: 10pt;
+    position:absolute;
+    top: 524px;
+    left: 100px;
+}
+.harmtable div{
+    padding-top:2px;
+    padding-bottom: 1px;
+    font-style:italic;
+}
+
+.harm3{
+    position: absolute;
+    width: 412px;
+    left: 2px;
+    overflow: hidden;
+    color: #ff0065;
+    font-weight:bolder;
+}
+.harm2_1{
+    position: absolute;
+    top: 27px;
+    left: 2px;
+    width: 200px;
+    overflow: hidden;
+    color:rgb(12, 233, 130);
+}
+.harm2_2{
+    position:absolute;
+    top: 27px;
+    left: 214px;
+    width: 200px;
+    overflow: hidden;
+    color:rgb(12, 233, 130);
+}
+.harm1_1{
+    position:absolute;
+    top: 53px;
+    left: 2px;
+    width: 200px;
+    overflow: hidden;
+}
+.harm1_2{
+    position:absolute;
+    top: 53px;
+    left: 214px;
+    width: 200px;
+    overflow: hidden;
+}
+.healthclock{
+    position: absolute;
+    left: 10px;
+    top: 500px;
+}
+.cred{
+    position: absolute;
+    left: 612px;
+    top: 515px;
+}
+.cred_up{
+    position: relative;
+    width: 32px;
+    height: 38px;
+    left: -13px;
+    top: -95px;
+    background-image: url("graphics/plus.png");
+    background-repeat: no-repeat;
+    background-position-x: 10px;
+    background-position-y: 10px;
+}
+.cred_up:hover{
+    background-image: url("graphics/plus_hover.png");
+}
+.cred_down{
+    position: relative;
+    width: 32px;
+    height: 38px;
+    left: -13px;
+    top: -51px;
+    background-image: url("graphics/minus.png");
+    background-repeat: no-repeat;
+    background-position-x: 10px;
+    background-position-y: 10px;
+}
+.cred_down:hover{
+    background-image: url("graphics/minus_hover.png");
+}
+.stash{
+    position: absolute;
+    left: 676px;
+    top: 509px;
+}
+.stash_up{
+    position: relative;
+    width: 32px;
+    height: 38px;
+    left: 89px;
+    top: -118px;
+    background-image: url("graphics/right.png");
+    background-repeat: no-repeat;
+    background-position-x: 10px;
+    background-position-y: 10px;
+}
+.stash_up:hover{
+    background-image: url("graphics/right_hover.png");
+}
+.stash_down{
+    position: relative;
+    width: 32px;
+    height: 38px;
+    left: 0px;
+    top: -156px;
+    background-image: url("graphics/left.png");
+    background-repeat: no-repeat;
+    background-position-x: 10px;
+    background-position-y: 10px;
+}
+.stash_down:hover{
+    background-image: url("graphics/left_hover.png");
+}
+.armor{
+    position:absolute;
+    left:20px;
+    top: 812px;
+    color:magenta;
+    font-family: Metro;
+    font-size: 8pt;
+}
+.armor div{
+    position:relative;
+    padding-top:4px;
+    padding-left: 20px;
+    padding-right: 20px;
+    float:left;
+    height: 20px;
+}
+.armor div:hover{
+    cursor:pointer;
+    color:#CCCCCC;
+}
+.armor img{
+    vertical-align: middle;
+}
+
+.regular_items{
+    position: absolute;
+    left: 0;
+    top: 837px;
+    font-family: Zekton;
+    
+    letter-spacing: .5px;
+    font-size: 10pt;
+    color: #CDCDCD;
+
+}
+.regular_items div{
+    margin:4px;
+    padding-left: 3px;
+    padding-top: 3px;
+    margin-top: 7px;
+    margin-bottom: -5px;
+    background-image: url("graphics/itembg.png");
+    background-repeat:no-repeat;
+    height: 23px;
+    width: 157px;
+}
+.regular_items div img{
+    margin-bottom: -2px;
+    padding-right: 3px;
+    vertical-align: top;
+}
+.regular_items div:hover{
+    cursor:pointer;
+    padding-left: 5px;
+    background-image: url("graphics/itembg_hover.png");
+}
+.regular_items .small{
+    font-style:italic;
+}
+.special_items{
+    position: absolute;
+    left: 183px;
+    top: 837px;
+    font-family: OpenSans;
+    
+    font-size: 9pt;
+    color: #994499;
+    font-variant-caps:petite-caps;
+}
+.special_items div{
+    margin:4px;
+    padding-left: 4px;
+    padding-top: 3px;
+    margin-top: 7px;
+    margin-bottom: -4px;
+    background-image: url("graphics/item_s_bg.png");
+    background-repeat: no-repeat;
+    vertical-align:middle;
+    height: 43px;
+    width: 255px;
+}
+.special_items .s_item_name{
+    color: #FFFFFF;
+    font-size: 11pt;
+    font-family: Zekton;
+    letter-spacing: 1px;    
+    margin-top: -1px;
+    border-bottom: 1px solid #CCCCCC;
+}
+.special_items div p{
+    position: relative;
+    margin-bottom: -1px;
+    top: -38px;
+    left: 45px;
+    max-width: 220px;
+    max-height: 42px;
+    overflow: hidden;
+}
+.special_items div img{
+    margin-bottom: -2px;
+    vertical-align: top;
+    padding-right: 3px;
+}
+.special_items div:hover{
+    cursor:pointer;
+    width: 256px;
+    height: 43px;
+    padding-left: 6px;
+    background-position-x:-1px;
+    background-image: url("graphics/item_s_bg_hover.png");
+}
+.special_items .small{
+    font-style:italic;
+}
+.special_items p{
+    
+    
+    margin-top: 0px;
+    
+}
+.column_right{
+    position: absolute;
+    
+    left: 500px;
+    top: 820px;
+    
+}
+.column_right img{
+    padding-top: 10px;
+}
+.abilities .ability{
+    background-image: url("graphics/ability_bg.png");
+    background-repeat: repeat-y;
+    padding-left: 30px;
+    padding-right: 30px;
+    margin-bottom: 8px;
+    color: #999999;
+    font-family: Zekton;
+    font-variant:small-caps;
+    letter-spacing: 1px;
+    font-size: 12pt;
+    border-left: 1px solid #999999;
+    border-top: 1px solid #999999;
+    border-bottom: 1px solid #999999;
+    width: 520px;
+    height: auto;
+}
+.abilities b{
+    color: #FFFFFF;
+}
+
+.notes {
+    color:#666666;
+    font-family: Zekton;
+    letter-spacing: .5px;
+    font-size: 12pt;
+    background: #000000;
+    border-left: 1px solid magenta;    
+    border-top: 1px solid magenta;
+    border-bottom: 1px solid magenta;
+    padding-left: 3px;
+    margin-top: -1px;
+    margin-bottom: -1px;
+    width:576px;
+}
+.notes .notelist{
+    min-height: 100px;
+    padding-left: 20px;
+    border-left: 1px solid magenta;
+}
+.notes .notelist b{
+    color: white;
+}
+.notes .notelist div{
+    padding-bottom: 15px;
+    padding-top: 10px;
+}
+.notes .notelist div:not(:last-child){
+    background-image: url("graphics/notes_sep.png");
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-position-x: 10px;
+}
+.notes .notelist input{
+    font-family: Zekton;
+    font-weight: bold;
+    width: 536px;
+    background:none;
+    border: none;
+    color: #666666;
+}
+.notes .notelist input[type=text]:focus{
+    border: hidden;
+    outline: none;
+
+
+
+}
+.column_right img{
+    position:relative;
+    left: 20px;
+    top:4px;
+}
+
+
+
+
+.test {
+    width: 500px;
+    height: 500px;
+    position: absolute;
+    background-color:rgb(48, 0, 102);
+    color: white;
+}
