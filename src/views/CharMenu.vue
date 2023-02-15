@@ -6,7 +6,7 @@
       <div class="nav-item">
         <router-link to="/add">+New</router-link>
       </div>
-      <button class="button" @click="this.$store.dispatch('deleteAll')">
+      <button class="button" @click="spaStore.deleteAll">
           Clear Char List
       </button>
   </div>
@@ -17,6 +17,8 @@ import {onMounted} from "vue"
 import {useSpaStore} from '@/stores/'
 
 const spaStore = useSpaStore()
+
+
 
 onMounted(() => {
   spaStore.fetchCharacters()
