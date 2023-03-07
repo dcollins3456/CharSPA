@@ -26,11 +26,16 @@ import {db} from '@/firebase';
 import { useSpaStore } from '@/stores/'
 
 const spaStore = useSpaStore()
+const myCrew = "myCrew123"
 let submitted = false;
+
+
+
 const newChar = ref({ 
   charname: "",
   playbook: "",
   pb_description: "",
+  portraitURL: "",
   pbxp: 0,
   stress: 0,
   trauma: 0,
@@ -82,11 +87,13 @@ const newChar = ref({
 });
 
 const addCharacter = async ({data}) => {
+
   try {
     const characterData = {
         charname: data.charname,
         playbook: data.playbook,
         pb_description: data.pb_description,
+        portraitURL: data.portraitURL,
         pbxp: data.pbxp,
         stress: data.stress,
         trauma: data.trauma,
@@ -136,8 +143,9 @@ const addCharacter = async ({data}) => {
         abilities:data.abilities,
         notes: data.notes
     }
-    const docRef = await addDoc(collection(db, "Characters"), characterData);
+    const docRef = await addDoc(collection(db, "Crews/"+myCrew, "Characters"), characterData);
     console.log("Character added successfully!, id: ", docRef.id);
+    //console.log('character portraitURL = ', characterData.portraitURL)
     spaStore.fetchCharacters();
   } catch (error) {
     console.error("Error adding character: ", error);
@@ -148,6 +156,10 @@ const clearForm = () => {
     newChar.value.charname = "";
     newChar.value.playbook = "";
     newChar.value.pb_description = "";
+    const timestamp = Date.now().toString(36);
+    const random = Math.random().toString(36).substr(2, 5);
+    const filename = `graphics/pictures/${timestamp}-${random}.png`;
+    console.log("filename generated = ", filename)
 };
 const randomizeFields = () => {
     submitted = false;

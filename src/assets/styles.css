@@ -20,6 +20,15 @@ body {
     margin: 0;
     color: #3355FF;
 }
+
+.hidden {
+    display:none;
+    border: 5px solid red;
+}
+.visible {
+    display:block;
+}
+
 .content_bg {
     background-image: url("graphics/bgc.png");
     background-attachment: fixed;
@@ -128,9 +137,21 @@ body {
 }
 .nav a:hover{
     color: #7799FF;
-    text-decoration: double underline;
     transition: color .35s ease-in-out;
+    animation-name: flash-glow;
+    animation-duration: .5s;
+    animation-iteration-count: 1;
 }
+@keyframes flash-glow {
+    0% {
+      color: #FFFFFF;
+    }
+    
+    100% {
+      color: #7799FF;
+    }
+}
+
 .nav .nav-item{
     float: left;
     padding: 5px;
@@ -144,14 +165,12 @@ body {
     font-size: 100px;
     color: red;
 }
-.character-sheet-content {
+.sheet-content {
     position: relative;
     overflow: hidden;
     width: 1060px;
     height: 1867px;
-    background-image: url("graphics/charsheet_bg.png");
     background-position-y: 0;
-    content-visibility: hidden;
     margin-top: -24px;
     margin-left: -1px;
     padding-top: 54px;
@@ -161,6 +180,12 @@ body {
     border-right: 2px solid rgb(48, 0, 102);
     z-index: 1;
 }
+.character .sheet-content {
+    background-image: url("graphics/charsheet_bg.png");
+}
+.ship .sheet-content {
+    background-image: url("graphics/shipsheet_bg.png");
+}
 .title {
     font-family: metro;
     color: #000000;
@@ -169,7 +194,7 @@ body {
     overflow: hidden;
     padding-top: 8px;
     position: absolute;
-
+    z-index: 50;
 }
 .title .charname {
     font-size: 27pt;
@@ -180,6 +205,29 @@ body {
     1px 1px 0 #33CCff;
     -webkit-text-stroke-width: 1px;
     -webkit-text-stroke-color: #33CCff;
+    cursor: pointer;
+}
+.title .designation{
+    font-size: 27pt;
+    text-shadow:
+    -1px -1px 0 #ff00ff,
+    1px -1px 0 #ff00ff,
+    -1px 1px 0 #ff00ff,
+    1px 1px 0 #ff00ff;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: #ff00ff;
+    cursor: pointer;
+}
+.title .shipmodel{
+    font-size: 20pt;
+    margin-right: 3px;
+    margin-top:-10px;
+    text-shadow:
+    -1px -1px 0 #33CCFF,
+    1px -1px 0 #33CCFF,
+    -1px 1px 0 #33CCFF,
+    1px 1px 0 #33CCFF;
+    float: left;
     cursor: pointer;
 }
 .title .sub{
@@ -212,18 +260,52 @@ body {
     float: left;
     cursor: pointer;
 }
+.title .crew_description{
+    font-size: 10pt;
+    color: #00ace5ff;
+    margin-top: 4px;
+    float: left;
+    cursor: pointer;
+}
 .pb_xpbar {
     position: absolute;
     left: 850px;
     top: 69px;
+    z-index: 99;
+    cursor: pointer;
 }
-.portrait img{
+.portrait{
+    top: 152px;
+    left: 5px;
+    width: 198px;
+    height: 310px;
+}
+.image1, .image2, .portrait{
     position: absolute;
     background: black;
     border: 6px solid black;
-    top: 152px;
+    overflow: hidden;
+}
+.image1, .image2{
+    height: 198px;
+    width: 310px;
     left: 5px;
 }
+.image-border{
+    position: absolute;
+    border: 1px solid white;
+    background: transparent;
+    width: 307px;
+    height: 195px;
+    z-index:99;
+}
+.image1 {
+    top: 194px;
+}
+.image2{
+    top: 443px;
+}
+
 .stressbar {
     position: absolute;
     top: 142px;
@@ -237,24 +319,42 @@ body {
 }
 .traumalist {
     position: absolute;
-    left: 247px;
-    top: 198px;
+    left: 242px;
+    top: 197px;
     font-family: OpenSans;
     color: black;
-    font-size: 10pt;
+    font-size: 11pt;
     font-variant: small-caps;
-}
-.traumalist div:not(:last-child){
-    float: left;
-    
-    border-right: 2px solid black;
+    cursor: pointer;
 }
 .traumalist div{
     float: left;
+}
+.traumalist div:not(:last-child){
+    
+    border-right: 2px dotted black;
+}
+.traumalist .normal {
+    float: left;
     padding-right: 5px;
     padding-left: 5px;
-    cursor: pointer;
+    
 }
+.traumalist .normal:hover{
+    animation-name: text-flash;
+    animation-duration: .5s;
+    animation-iteration-count: 1;
+}
+@keyframes text-flash {
+    0% {
+      color: #ff0065;
+    }
+   
+    100% {
+      color: #000000;
+    }
+}
+
 .traumalist .i {
     color: #CDCDCD;
     font-family: OpenSans;
@@ -262,105 +362,644 @@ body {
     font-style: italic;    
     margin-left: -1px;
     margin-right: 1px;
+    padding-left: 5px;
+    padding-right: 5px;
 }
 
-.character_description{
-    color: #AAAAAA;
+/* SHIP DESCRIPTION */
+.ship_description{
+    position: absolute;
     font-family: Zekton;
-    
     letter-spacing: .5px;
     font-size: 10pt;
+    width: 408px;
+    padding-right: 10px;
+    height: 249px;
+    color: #CDCDCD;
 }
-.character_description div{
-    max-width: 400px;
-    overflow-wrap: break-word;
-    overflow: hidden;
-    padding: 5px;
+.ship_description .look{
+    position: absolute;
+    top: 110px;
+    left: 747px;
+    width: 290px;
+    height: 20px;
 }
-.alias {
-    position:absolute;
-    top: 232px;
-    left: 385px;
-    max-height: 20px;
-    overflow: hidden;
+.ship_description .reputation{
+    position: absolute;
+    top: 160px;
+    left: 869px;
+    width: 170px;
 }
-.alias:hover{
-    overflow: visible;
-    max-height: 20px;
-    background-color: #000000BB;
-    cursor:pointer;
-    transition-property: opacity;
-    transition: .1s ease-out;
-    z-index: 99;
+.ship_description .crewsize{
+    position: absolute;
+    top: 202px;
+    left: 910px;
 }
-.heritage {
-    position:absolute;
-    top: 269px;
-    left: 385px;
-    height: 40px;
-    overflow: hidden;
-}
-.heritage:hover{
-    overflow: visible;
-    max-height: 200px;
-    background-color: #000000BB;
-    cursor:pointer;
-    transition-property: opacity;
-    transition: .1s ease-out;
-    z-index: 99;
-    margin-bottom: -80px;
-}
-.background {
-    position:absolute;
-    top: 330px;
-    left: 385px;
-    max-height: 40px;
-    overflow: hidden;
-}
-.background:hover{
-    overflow: visible;
-    max-height: 200px;
-    background-color: #000000BB;
-    cursor:pointer;
-    transition-property: opacity;
-    transition: .1s ease-out;
-    z-index: 99;
-}
-.vice {
-    position:absolute;
-    top: 390px;
-    left: 385px;
-    overflow: hidden;
-    max-height: 20px;
-    overflow: hidden;
-    
-}
-.vice:hover{
-    overflow: visible;
-    max-height: 200px;
-    background-color: #000000BB;
-    cursor:pointer;
-    transition-property: opacity;
-    transition: .1s ease-out;
-    z-index: 99;
+.ship_description .shipsize{
+    position: absolute;
+    top: 260px;
+    left: 946px;
+    width: 90px;
+    height: 20px;
 }
 
-.look {
-    position:absolute;
-    left: 385px;
-    top: 427px;
-    max-height: 40px;
-    overflow: hidden;
+.cred_debt {
+    position: absolute;
+    top: 199px;
+    left: 379px;
+    font-family: metro;
+    font-size: 13px;
+    color: black;
 }
-.look:hover{
-    overflow: visible;
-    max-height: 200px;
-    background-color: #000000BB;
+.cred_debt .cred_novault{
+    color: #00ace5ff;
+}
+.cred_debt .cred_vault{
+    color: black;
+}
+.creds{
+    position: absolute;
+    top: 229px;
+    left: 384px;
+}
+.creds img{
+    margin-right: -10px;
+}
+.cred_debt .cred_up{
+    left: 97px;
+    top: 11px;
+    z-index: 5;
+}
+.cred_debt .cred_down{
+    top: -8px;
+    left: -13px;
+    z-index: 5;
+}
+.debt{
+    position: absolute;
+    left: 520px;
+    top: 246px;
+}
+.debt img{
+    padding-right: 2px;
+}
+.cred_debt .stash_up{
+    top: -74px;
+    left: 239px;
+}
+.cred_debt .stash_down{
+    top: -112px;
+    left: 148px;
+}
+
+/* GAMBITS */
+.gambits{
+    position: absolute;
+    top: 382px;
+    left: 763px;
+    cursor: pointer;
+}
+.gambits-button{
+    position: relative;
+    background-image: url("graphics/gambits-button.png");
+    top: -62px;
+    left: -90px;
+    width: 35px;
+    height: 27px;
+    cursor: pointer;
+}
+.gambits-button:hover{
+    background-image: url("graphics/gambits-button-hover.png");
+}
+
+/* SHIP SYSTEMS */
+.comms {
+    position: absolute;
+    left: 497px;
+    top: 291px;
+    width: 34px;
+}
+.engines{
+    position:absolute;
+    left: 706px;
+    top: 291px;
+    width: 34px;
+}
+.hull{
+    position:absolute;
+    left: 496px;
+    top: 418px;
+    width: 34px;
+}
+.weapons{
+    position: absolute;
+    left:706px;
+    top:401px;
+    width: 34px;
+}
+.comms img, .engines img, .hull img, .weapons img{
     cursor:pointer;
-    transition-property: opacity;
-    transition: .1s ease-out;
+    z-index:99;
+}
+.sys-add-button {
+    position: relative;
+    background-image: url("graphics/plus.png");
+    background-repeat:no-repeat;
+    width: 20px;
+    height: 11px;
+    cursor:pointer;
+    z-index: 1;
+}
+.sys-add-button:hover{
+    background-image: url("graphics/plus-hover.png")
+}
+.comms .sys-add-button{
+    top: -84px;
+    left: -20px;
+}
+.engines .sys-add-button{
+    top: -68px;
+    left: -20px;
+}
+.hull .sys-add-button{
+    top: -47px;
+    left: -20px
+}
+.weapons .sys-add-button{
+    top: -67px;
+    left: -20px;
+}
+.damage{
+    position:absolute;
+    top:0;
+    left:16px;
+}
+.mods{
+    padding: 2px;
+}
+.comms .mods{
+    position: relative;
+    line-height: 18px;
+    left: -160px;
+    top: -80px;
+    width: 157px;
+    height: 86px;
+}
+.engines .mods{
+    position: relative;
+    line-height: 18px;
+    top: -64px;
+    left: -160px;
+    height: 74px;
+    width: 157px;
+}
+.hull .mods{
+    position: relative;
+    line-height: 18px;
+    top: -40px;
+    left: -160px;
+    height: 49px;
+    width: 157px;
+}
+.weapons .mods{
+    position: relative;
+    line-height: 18px;  
+    top: -64px;
+    left: -160px;
+    height: 69px;
+    width: 157px;
+}
+.mods .mod-div{
+    color: #aaaaaa;
+    font-family: zekton;
+    font-size: 13px;
+    cursor:pointer;
+    letter-spacing: .5px;
+}
+.mods img{
+    position: relative;
+    top: 3px;
+    padding-right: 2px;
+}
+
+/* UPKEEP */
+.upkeep{
+    position: absolute;
+    top: 544px;
+    left: 494px;
+    text-align: right;
+    width: 20px;
+    font-family: zekton;
+    font-size: 26px;
+}
+.upkeep-image{
+    position: absolute;
+    left: -84px;
+    top: 39px;
+    cursor: pointer;
+}
+
+/* FUEL/SHIELDS */
+.hyperfuel{
+    position: absolute;
+    top: 545px;
+    left: 695px;
+    cursor: pointer;
+}
+.shields{
+    position: absolute;
+    top: 593px;
+    left: 568px;
+    cursor: pointer;
+}
+.shields .noshields{
+    position: relative;
+    top: 1px;
+    left: 2px;
+}
+
+/* CREW GEAR */
+.gloss{
+    position: absolute;
+    top: 2px;
+    left: 3px;
+    pointer-events: none;
+}
+.training .gloss{
+    top: 0;
+    left:0;
+}
+.crew-gear .gloss{
+    left: 3px;
+    top: 3px;
+}
+.auxiliary .gloss{
+    left: 3px;
+    top: 3px;
+}
+.training{
+    position: absolute;
+    top: 709px;
+    left: 30px;
+    width: 305px;
+    height: 25px;
+    margin-left: 2px;
+    margin-top: 3px;
+}
+.training img{
+    margin-left: 3px;
+}
+
+.crew-gear {
+    position: absolute;
+    top: 667px;
+    left: 372px;
+    width: 129px;
+    height: 110px;
+}
+.upgrades{
+    position: absolute;
+    top: 667px;
+    left: 547px;
+    width: 162px;
+    height: 110px;
+}
+.auxiliary{
+    position: absolute;
+    top: 624px;
+    left: 748px;
+    width: 100px;
+    height: 150px;
+}
+.ship-gear{
+    position: absolute;
+    top: 624px;
+    left: 892px;
+    width: 120px;
+    height: 150px;
+}
+.crew-upgrade{
+    font-family: zekton;
+    font-size: 12px;
+    color: #cccccc;
+    padding: 2px;
+}
+.crew-upgrade div{
+    margin: 2px;
+    height: 18px;
+    float:left;
+}
+.crew-upgrade span{
+    margin-left: 3px;
+}
+.crew-upgrade img{
+    float: left;
+    padding-right: 2px;
+}
+
+/* HEAT/WANTED */
+.heat {
+    position:absolute;
+    top: 826px;
+    left: 0;
+    padding-top: 15px;
+    width: 1300px;
+    height: 80px;
+    margin-left: 10px
+}
+.system-heat{
+    position: absolute;
+    font-family: Metro;
+    font-size: 12px;
+    color: white;
+}
+.rin{
+    left: 10px;
+}
+.holt{
+    left: 265px;
+}
+.iota{
+    left: 530px;
+}
+.brekk{
+    left: 795px;
+}
+.system-heat .system{
+    position: absolute;
+    top: 0;
+    left: 20px;
+    z-index: 18;
+}
+.heatbar{
+    position: relative;
+    top: 5px;
+    z-index: 17;
+}
+.coolbar{
+    position: relative;
+    top: 23px;
+    left: -195px;
+}
+.wanted{
+    position: absolute;
+    left: 187px;
+    top: 7px;
+    font-size: 29px;
+    text-align: right;
+    width: 30px;
+    color: black;
+    text-shadow:
+    -1px -1px 0 #ff0065,
+    1px -1px 0 #ff0065,
+    -1px 1px 0 #ff0065,
+    1px 1px 0 #ff0065;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: #ff0065;
+    z-index: 20;
+}
+
+/* SHIP ABILITIES */
+.ship-abilities{
+    position:relative;
+    top: 940px;
+    left: 636px;
+}
+.ship-abilities .ability{
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    position: relative;
+    background-image: url("graphics/ship-ability-bg.png");
+    background-repeat: no-repeat;
+    min-height: 135px;
+    width: 443px;
+    color: white;
+    font-family: Zekton;
+    font-variant:small-caps;
+    letter-spacing: 1px;
+    font-size: 12pt;
+}
+.ship-abilities .ability-content{
+    position: relative;
+}
+.ship-abilities .ability-content p{
+    margin: auto;
+    padding-right: 10px;
+    width: 310px;
+    text-align: right;
+    color: #888888;
+}
+.ship-abilities .ability-content p b{
+    color: white;
+}
+
+
+.ship-ability-add-button{
+    position: relative;
+    width: 45px;
+    height: 26px;
+    z-index: 999;
+}
+.ship-ability-add-button button{
+    position:absolute;
+    top:865px;
+    left:636px;
+    border: none;
+    background: transparent;   
+}
+
+.ship-ability-add-button button img{
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.ship-ability-add-button .image-main{
+    opacity:1
+}
+.ship-ability-add-button:hover .image-main{
+    opacity:0;
+    transition: opacity .2s;
+}
+.ship-ability-add-button .image-hover{
+    opacity:0;
     z-index: 99;
 }
+.ship-ability-add-button:hover .image-hover{
+    opacity: 1;
+    transition: opacity .2s;
+}
+
+/* SHIP NOTES */
+.column-left{
+    position: absolute;
+    right: 500px;
+    top: 948px;
+}
+.column-left .notes-title{
+    padding-top: 10px;
+}
+.column-left img{
+    position:relative;
+    right: 1px;
+    top:4px;
+}
+.ship-notes {
+    color:#666666;
+    font-family: Zekton;
+    letter-spacing: .5px;
+    font-size: 12pt;
+    background: #000000;
+    border-right: 1px solid magenta;    
+    border-top: 1px solid magenta;
+    border-bottom: 1px solid magenta;
+    padding-right: 3px;
+    margin-top: -1px;
+    margin-bottom: -1px;
+    width:576px;
+}
+.ship-notes .notelist{
+    min-height: 100px;
+    padding-right: 20px;
+    border-right: 1px solid magenta;
+}
+.ship-notes .notelist b{
+    color: white;
+    
+    
+}
+.ship-notes .notelist div{
+    padding-bottom: 1px;
+    padding-top: 5px;
+    padding-left: 5px;
+}
+.ship-notes .notelist div:not(:last-child){
+    background-image: url("graphics/notes_sep.png");
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-position-x: 10px;
+}
+.ship-notes .notelist input{
+    font-family: Zekton;
+    font-weight: bold;
+    width: 536px;
+    background:none;
+    border: none;
+    color: #666666;
+}
+.ship-notes .notelist input[type=text]:focus{
+    border: hidden;
+    outline: none;
+
+}
+.ship-notes .add-button{
+    position: relative;
+    width: 45px;
+    height: 26px;
+    z-index: 999;
+}
+.ship-notes .add-button button{
+    position:absolute;
+    top:-13px;
+    left:60px;
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+    border: none;
+    background: transparent;   
+}
+.ship-notes{
+    cursor: pointer;
+}
+
+/* CHARACTER DESCRIPTION */
+.character_description{
+    position: absolute;
+    top: 232px;
+    left: 383px;
+    font-family: Zekton;
+    letter-spacing: .5px;
+    font-size: 10pt;
+    width: 408px;
+    padding-right: 10px;
+    height: 249px;
+    color: #CDCDCD;
+}
+
+
+.character_description .container .editable-input{
+    position: relative;
+    width: 408px;
+    padding: 5px;
+    padding-bottom: 6.5px;
+    overflow: hidden;
+    border: 1px solid #FFFFFF00;
+}
+.character_description .container .look .editable-input {
+    height: 44px;
+}
+.character_description .container .heritage .editable-input {
+    height: 44px;
+}
+.character_description .container .background .editable-input {
+    height: 44px;
+}
+.character_description .container .alias .editable-input {
+    height: 20px;
+}
+.character_description .container .vice .editable-input {
+    height: 20px;
+}
+
+
+.character_description .container .editable-input:hover {
+    overflow: visible;
+    height: auto;
+    background-color: #000000;
+    border: 1px solid #1188CC;
+    transition-property: opacity;
+    transition: .2s ease-out;
+    z-index: 99;
+    cursor:pointer;
+    width: 408px;
+    animation-name: border-flash;
+    animation-duration: .5s;
+    animation-iteration-count: 1;
+}
+@keyframes border-flash {
+    0% {
+      border-color: #FFFFFF;
+    }
+   
+    100% {
+      border-color: #1188CC;
+    }
+}
+
+.alias, .heritage, .background, .vice, .look{
+    position: absolute;
+    height: 20px;
+    width: 100%;
+}
+
+.heritage, .background, .look{
+    height: 50px;
+}
+
+.heritage{
+    top:35px;
+}
+.background{
+    top: 95px;
+}
+.vice{
+    top: 158px; 
+}
+.look{
+    top:192px;
+}
+
+
+
 .attribute_xpbars{
     position: absolute;
     left: 930px;
@@ -419,7 +1058,7 @@ body {
     left: 2px;
     width: 200px;
     overflow: hidden;
-    color:rgb(12, 233, 130);
+    color:#0CE982;
 }
 .harm2_2{
     position:absolute;
@@ -427,7 +1066,7 @@ body {
     left: 214px;
     width: 200px;
     overflow: hidden;
-    color:rgb(12, 233, 130);
+    color:#0CE982;
 }
 .harm1_1{
     position:absolute;
@@ -453,26 +1092,30 @@ body {
     left: 612px;
     top: 515px;
 }
+.cred .cred_up{
+    left: -13px;
+    top: -95px;
+}
+.cred .cred_down{
+    left: -13px;
+    top: -51px;
+}
 .cred_up{
     position: relative;
     width: 32px;
     height: 38px;
-    left: -13px;
-    top: -95px;
     background-image: url("graphics/plus.png");
     background-repeat: no-repeat;
     background-position-x: 10px;
     background-position-y: 10px;
 }
 .cred_up:hover{
-    background-image: url("graphics/plus_hover.png");
+    background-image: url("graphics/plus-hover.png");
 }
 .cred_down{
     position: relative;
     width: 32px;
     height: 38px;
-    left: -13px;
-    top: -51px;
     background-image: url("graphics/minus.png");
     background-repeat: no-repeat;
     background-position-x: 10px;
@@ -549,7 +1192,7 @@ body {
     color: #CDCDCD;
 
 }
-.regular_items div{
+.regular_items .item-div{
     margin:4px;
     padding-left: 3px;
     padding-top: 3px;
@@ -561,13 +1204,13 @@ body {
     width: 165px;
     cursor:default;
 }
-.regular_items div img{
+.regular_items .item-div img{
     margin-bottom: -2px;
     padding-right: 3px;
     vertical-align: top;
     cursor:pointer;
 }
-.regular_items div:hover{
+.regular_items .item-div:hover{
     
     padding-left: 4px;
     background-image: url("graphics/itembg_hover.png");
@@ -575,17 +1218,15 @@ body {
 .regular_items .small{
     font-style:italic;
 }
-
+.regular_items .edit-button{
+    right:0;
+    float:right;
+}
 .edit-button{
     position: relative;
-    right:0;
-    width: 16px;
-    height: 16px;
-    border: 0;
-    background: transparent;
-    float: right;
-    cursor: pointer;
-    margin-right:-3px;
+    height: 20px;
+    width: 20px;
+    z-index: 99;
 }
 .edit-button img{
     position:absolute;
@@ -600,21 +1241,27 @@ body {
     transition: opacity .2s;
 }
 .special_items .edit-button{
-    bottom: 32px;
-    right: 4px;
+    position: relative;
+    bottom: 45px;
+    float:right;
 }
+.special_items .edit-button img{
+    top: 15px;
+}
+
+
 
 .special_items{
     position: absolute;
     left: 183px;
     top: 837px;
     font-family: OpenSans;
-    
+    height:370px;
     font-size: 9pt;
     color: #994499;
     font-variant-caps:petite-caps;
 }
-.special_items div{
+.special_items .s-item-div{
     margin:4px;
     padding-left: 4px;
     padding-top: 3px;
@@ -637,7 +1284,7 @@ body {
     margin-top: -2px;
     border-bottom: 1px solid #CCCCCC;
 }
-.special_items div p{
+.special_items .s-item-div p{
     position: relative;
     margin-bottom: -1px;
     top: -38px;
@@ -646,13 +1293,13 @@ body {
     max-height: 42px;
     overflow: hidden;
 }
-.special_items div img{
+.special_items .s-item-div img{
     margin-bottom: -2px;
     vertical-align: top;
     padding-right: 3px;
     cursor:pointer;
 }
-.special_items div:hover{
+.special_items .s-item-div:hover{
     width: 270px;
     height: 43px;
     padding-left: 5px;
@@ -668,15 +1315,46 @@ body {
     margin-top: 3px;
     
 }
-.column_right{
+
+.s-add-button{
     position: absolute;
-    
+    width: 49px;
+    height: 25px;
+    bottom: 2px;
+    left:-1px;
+}
+.s-add-button img{
+    position: absolute;
+}
+.s-add-button .image-main{
+    opacity:1
+}
+.s-add-button:hover .image-main{
+    opacity:0;
+    transition: opacity .2s;
+}
+.s-add-button .image-hover{
+    opacity:0;
+    z-index: 99;
+}
+.s-add-button:hover .image-hover{
+    opacity: 1;
+    transition: opacity .2s;
+}
+
+
+.column-right{
+    position: absolute;
     left: 500px;
     top: 820px;
-    
 }
-.column_right img{
+.column-right .notes-title{
     padding-top: 10px;
+}
+.column-right img{
+    position:relative;
+    left: 20px;
+    top:4px;
 }
 .abilities .ability{
     background-image: url("graphics/ability_bg.png");
@@ -694,9 +1372,48 @@ body {
     border-bottom: 1px solid #999999;
     width: 520px;
     height: auto;
+    cursor: pointer;
 }
 .abilities b{
     color: #FFFFFF;
+}
+
+.add-button{
+    position: relative;
+    width: 45px;
+    height: 26px;
+    z-index: 999;
+}
+.add-button button{
+    position:absolute;
+    top:-9px;
+    left:537px;
+    border: none;
+    background: transparent;   
+}
+.notelist .add-button{
+    top:46px;
+    right: 25px;
+}
+.add-button button img{
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.add-button .image-main{
+    opacity:1
+}
+.add-button:hover .image-main{
+    opacity:0;
+    transition: opacity .2s;
+}
+.add-button .image-hover{
+    opacity:0;
+    z-index: 99;
+}
+.add-button:hover .image-hover{
+    opacity: 1;
+    transition: opacity .2s;
 }
 
 .notes {
@@ -720,10 +1437,12 @@ body {
 }
 .notes .notelist b{
     color: white;
+    
+    
 }
 .notes .notelist div{
-    padding-bottom: 15px;
-    padding-top: 10px;
+    padding-bottom: 1px;
+    padding-top: 5px;
 }
 .notes .notelist div:not(:last-child){
     background-image: url("graphics/notes_sep.png");
@@ -743,22 +1462,148 @@ body {
     border: hidden;
     outline: none;
 
-
-
 }
-.column_right img{
-    position:relative;
-    left: 20px;
-    top:4px;
+.note{
+    cursor: pointer;
 }
 
 
 
-
-.test {
-    width: 500px;
-    height: 500px;
-    position: absolute;
-    background-color:rgb(48, 0, 102);
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .editable-input{
+    cursor:pointer;
+  }
+  
+  .editable-placehold {
+    position: relative;
+    width: 100%;
+    height: 20px;
+    margin: -5px;
+    cursor:pointer;
+  }
+  
+  .edit-item {
+    z-index: 1000;
+    background-color: #000000;
+    border: 2px solid purple;
+    color:#0CE982;
+    padding: 5px;
+    border-radius: 5px;
+    text-align: center;
+    float:left;
+    font-family: Zekton;
+    font-size: 14px;
+    text-shadow:none;
+    -webkit-text-stroke-width: 0;
+  }
+  .editable-input .edit-item{
+    display: flex;
+    justify-content: space-between;
+    
+  }
+  .edit-item input{
+    float:right;
+    margin: 3px;
+    margin-left:0;
+    text-align: left;
+    background: #111155;
     color: white;
-}
+    font-family: Zekton;
+    font-variant:small-caps;
+    border-bottom:2px solid #3399FF;
+    border-right:2px solid #3399FF;
+    border-top: 2px solid #1155CC;
+    border-left: 2px solid #1155CC;
+    flex: 1;
+  }
+  .edit-item textarea{
+    float:right;
+    margin: 3px;
+    margin-left:0;
+    text-align: left;
+    background: #111155;
+    color: white;
+    font-family: Zekton;
+    font-variant:small-caps;
+    border-bottom:2px solid #3399FF;
+    border-right:2px solid #3399FF;
+    border-top: 2px solid #1155CC;
+    border-left: 2px solid #1155CC;
+    flex: 1;
+    width: 400px;
+  }
+  .edit-item textarea:focus{
+    outline:#0CE982;
+  }
+  .edit-item input[type=number]{
+    width: 60px;
+    float: left;
+    margin-left: 18px;
+  }
+  .edit-item input:focus{
+    outline:#0CE982;
+  }
+  
+  .edit-item label{
+    float:left;
+    margin: 3px;
+    padding-top:4px;
+    text-align:right;
+    color:#0CE982;
+  }
+  
+  .editable-input .edit-item label{
+    margin-right: 7px;
+    position: relative;
+    top:-2px;
+  }
+  .edit-item button{
+    position: relative;
+    cursor:pointer;
+    height: 28px;
+    width: 28px;
+    background: transparent;
+    border: none;
+    float:right;
+    margin: 0;
+    flex-shrink: 0;
+  }
+  .edit-item button img{
+    position: absolute;
+    top:0;
+    left:0;
+    padding: 6px;
+  }
+  .edit-item button .image-main{
+    opacity: 1;
+  }
+  .edit-item button:hover .image-main{
+    opacity: 0;
+    transition: opacity .2s;
+  }
+  
+  .edit-item button .image-hover{
+    opacity:0;
+  }
+  .edit-item button:hover .image-hover{
+    opacity: 1;
+    transition: opacity .2s;
+  }
+  .message{
+    color:#FF0065;
+    font-family: Zekton;
+    font-size: 14px;
+    font-weight: bold;
+  }

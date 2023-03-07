@@ -8,8 +8,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "eslint-plugin-vue": "^9.9.0",
     "firebase": "^9.17.1",
     "pinia": "^2.0.28",
+    "pinia-plugin-persistedstate": "^3.1.0",
     "vue": "^3.2.45",
     "vue-router": "^4.1.6"
   },

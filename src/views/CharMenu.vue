@@ -1,7 +1,10 @@
 <template>
   <div class="nav">
+      <div class="nav-item">
+        <router-link to="/crew">{{spaStore.currentShip.designation}}</router-link>
+      </div>
       <div v-for="character in spaStore.Characters" :key="character.id" class="nav-item">
-        <router-link to="/" @click="spaStore.selectCharacter(character.id)">{{character.charname}}</router-link>
+        <router-link to="/:id" @click="spaStore.selectCharacter(character.id)">{{character.charname}}</router-link>
       </div>
       <div class="nav-item">
         <router-link to="/add">+New</router-link>
@@ -18,12 +21,12 @@ import {useSpaStore} from '@/stores/'
 
 const spaStore = useSpaStore()
 
-
-
-onMounted(() => {
+onMounted(()=>{
+  console.log('CharMenu >>> ON MOUNT <<< | fetchCharacters called from MENU...')
   spaStore.fetchCharacters()
+  spaStore.fetchShip()
+  console.log('CharMenu >>> END OF MOUNT <<< | spaStore.currentShip.designation ', spaStore.currentShip.designation)
 })
-
 </script>
 
 <style>
