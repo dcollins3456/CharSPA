@@ -16,20 +16,20 @@
             <img class="image-hover" src="graphics/edit-hover.png" />
             <img class="image-main" src="graphics/edit.png" />
         </div>
-        <div v-on:click.self="editing = false;" class="modal-overlay" v-show="editing">
+        <div v-on:click.self="cancelInput()" class="modal-overlay" v-show="editing">
             <form
               class="edit-item"
               @submit.prevent
-              @keyup.enter.prevent="updateItemData(); editing = false;"
+              @keydown.enter.prevent="updateItemData(); editing = false;"
             >
               <label for="itemNameInput">Item Name:</label>
               <input
                 id="itemNameInput"
                 type="text"
-                maxlength="28"
+                maxlength="17"
                 ref="itemNameInput"
-                v-model="item.name"
-                @keyup.enter.prevent="updateItemData(); editing = false;"
+                v-model="itemNameValue"
+                @keydown.enter.prevent="updateItemData(); editing = false;"
               />
               <br />
               <label for="itemBoxesInput"># of Boxes:</label>
@@ -58,7 +58,7 @@
 </template>
 
 <script setup="props">
-import { nextTick, ref, computed, } from "vue";
+import { nextTick, ref, computed, watch, reactive} from "vue";
 import { useSpaStore } from "@/stores/";
 
 const spaStore = useSpaStore();
@@ -80,30 +80,49 @@ const currentCharacter = computed(() => {
 });
 
 const editing = ref(false);
-const itemNameInput = ref(null);
-const itemBoxesInput = ref(null);
-const item = computed(() => currentCharacter.value.items[props.itemIndex]);
+const itemNameInput = ref(null)
+const itemNameValue = ref(spaStore.currentCharacter.items[props.itemIndex].name)
+const itemBoxesInput = ref(null)
+
+const originalFieldValue = ref("")
+const originalBoxesValue = ref(spaStore.currentCharacter.items[props.itemIndex].boxes)
+const item = reactive(currentCharacter.value.items[props.itemIndex])
+
+watch(() => item.name, (newValue) => {
+  itemNameValue.value = newValue
+});
+watch(()=> item.boxes, (newValue) => {
+  itemBoxesInput.value = newValue
+})
 
 const triggerEditing = () => {
-    editing.value = true;
-    if (editing.value) {
-    nextTick(() => {
-        console.log("itemNameInput value: ", itemNameInput.value.value);
-        itemNameInput.value.focus();
-        itemNameInput.value.setSelectionRange(0, 0);
-    });
-    }
+  editing.value = true
+  originalFieldValue.value = itemNameInput.value.value;
+  console.log("ORIGINAL BOXES VALUE, ", originalBoxesValue.value)
+  if (editing.value) {
+  nextTick(() => {
+    console.log("itemNameInput value: ", itemNameInput.value.value)
+    itemNameInput.value.focus()
+    itemNameInput.value.setSelectionRange(0, 0)
+  });
+  }
 };
 
 const updateItemData = () => {
-  const newBoxes = itemBoxesInput.value.value
-  
-  currentCharacter.value.item.name = itemNameInput.value.value;
-  currentCharacter.value.item.boxes = Number(newBoxes);
-  editing.value = false;
-  spaStore.charUpdate();
+  const newBoxesValue = Number(itemBoxesInput.value.value)
+  originalFieldValue.value = itemNameInput.value.value
+  console.log("updating item name, ", originalFieldValue)
+  currentCharacter.value.item.name = itemNameInput.value.value
+  item.boxes = newBoxesValue
+  editing.value = false
+  spaStore.charUpdate()
 };
-
+const cancelInput = () => {
+  itemNameInput.value = originalFieldValue.value
+  item.boxes = originalBoxesValue.value
+  itemBoxesInput.value = originalBoxesValue.value
+  editing.value = false
+};
 
 </script>
 
