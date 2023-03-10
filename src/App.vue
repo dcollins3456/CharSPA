@@ -1,9 +1,7 @@
 <template>
-  <div id="app" class="content_bg">
-    <div >
-      <router-view name="nav-bar"/>
-    </div>  
-    <router-view />
+  <div id="app" >    
+    <router-view name="nav-bar"/>
+    <router-view />  
   </div>
 </template>
 

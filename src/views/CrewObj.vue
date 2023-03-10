@@ -1,5 +1,5 @@
 <template>
-    <div v-if="currentShip" class="ship">
+    <div v-if="currentShip" class="ship content_bg">
         <div class="sheet-content">
             <!-- character Title -->
             <div class="title">
@@ -238,10 +238,10 @@
                     <div class="note" v-for="(item, index) in currentShip.notes" :key="item.index" >
                         <NoteItem type="ship" :itemIndex="index" />
                     </div>
-                    <div @click="()=>addNote()" class="add-button">
+                    <div @click="()=>addNote()" class="notes-add-button">
                         <button>
-                        <img class="image-hover" src="graphics/plus-add2-hover.png" />
-                        <img class="image-main" src="graphics/plus-add2.png" />
+                            <img class="image-hover" src="graphics/plus-add2-hover.png" />
+                            <img class="image-main" src="graphics/plus-add2.png" />
                         </button>
                     </div>
                     </div>

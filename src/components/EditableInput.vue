@@ -67,9 +67,10 @@
   });
   
   const editing = ref(false);
+  
   const editableInputField = ref(null);
-  const originalFieldValue = ref("");
   const editableValue = ref(currentObject.value[props.value]);
+  const originalFieldValue = ref("");
 
   watch(() => currentObject.value[props.value], (newValue) => {
     editableValue.value = newValue;

@@ -12,16 +12,38 @@
       <button class="button" @click="spaStore.deleteAll">
           Clear Char List
       </button>
+      <button @click="handleSignOut" v-if="isLoggedIn">Sign Out</button>
   </div>
 </template>
 
 <script setup>
-import {onMounted} from "vue"
+import {onMounted, ref} from "vue"
+import { getAuth, onAuthStateChanged, signOut } from "firebase/auth"
 import {useSpaStore} from '@/stores/'
+import { useRouter } from 'vue-router'
 
+const router = useRouter()
 const spaStore = useSpaStore()
 
+const isLoggedIn = ref(false);
+
+const handleSignOut = () => {
+  console.log("CharMenu: ________ SIGNING OUT!")
+  signOut(auth).then(() => {
+    router.push("/")
+  })
+}
+
+let auth;
 onMounted(()=>{
+  auth = getAuth();
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      isLoggedIn.value = true;
+    } else {
+      isLoggedIn.value = false;
+    }
+  })
   console.log('CharMenu >>> ON MOUNT <<< | fetchCharacters called from MENU...')
   spaStore.fetchCharacters()
   spaStore.fetchShip()

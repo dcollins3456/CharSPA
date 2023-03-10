@@ -20,7 +20,7 @@
 
         <p>{{ item.description }}</p>
     </a>
-    <div v-on:click.self="if(!message){editing = false};" class="modal-overlay" v-show="editing">
+    <div v-on:click.self="cancelInput();" class="modal-overlay" v-show="editing">
       <form
         class="edit-item"
         @submit.prevent
@@ -65,7 +65,7 @@
           <img class="image-hover" src="graphics/save-hover.png" />
           <img class="image-main" src="graphics/save.png" />
         </button>
-        <button type="button" @click="if(!message){editing = false};" class="edit-item">
+        <button type="button" @click="cancelInput();" class="edit-item">
           <img class="image-hover" src="graphics/cancel-hover.png" />
           <img class="image-main" src="graphics/cancel.png" />
         </button>
@@ -82,7 +82,7 @@
 </template>
 
 <script setup="props">
-import { nextTick, ref, computed, onMounted} from "vue";
+import { nextTick, ref, reactive, computed, watch, onMounted} from "vue";
 import { useSpaStore } from "@/stores/";
 
 const spaStore = useSpaStore();
@@ -105,13 +105,34 @@ const currentCharacter = computed(() => {
 
 const editing = ref(false);
 const itemNameInput = ref(null);
+const itemNameValue = ref(spaStore.currentCharacter.items[props.itemIndex].name)
+const itemDescValue = ref(spaStore.currentCharacter.items[props.itemIndex].desc)
 const itemDescInput = ref(null);
 const itemBoxesInput = ref(null);
-const item = computed(() => currentCharacter.value.s_items[props.itemIndex]);
+
+const originalFieldValue = ref("")
+const originalDescValue = ref("")
+const originalBoxesValue = ref(spaStore.currentCharacter.s_items[props.itemIndex].boxes)
+const item = reactive(currentCharacter.value.s_items[props.itemIndex])
+
 const message = ref(false);
+
+watch(() => item.name, (newValue) => {
+  itemNameValue.value = newValue
+});
+watch(()=> item.description, (newValue) => {
+  console.log("WATCH DESC")
+  itemDescValue.value = newValue
+})
+watch(()=> item.boxes, (newValue) => {
+  itemBoxesInput.value = newValue
+})
+
 
 const triggerEditing = () => {
     editing.value = true;
+    originalFieldValue.value = itemNameInput.value.value
+    originalDescValue.value = itemDescInput.value.value
     if (editing.value) {
     nextTick(() => {
         console.log("itemNameInput value: ", itemNameInput.value.value);
@@ -128,21 +149,33 @@ const deleteItem = () => {
 }
 const updateItemData = () => {
     console.log("updateItemData NAME: ", currentCharacter.value.item.name)
+    
     if(!itemNameInput.value.value || !itemDescInput.value.value){
       console.log("updateItemData: LOCKED", !itemNameInput.value.value)
     }
     else{
       console.log("MESASAGE SET TO FALSE.")
+      const newBoxesValue = Number(itemBoxesInput.value.value)
+      originalFieldValue.value = itemNameInput.value.value
+      originalDescValue.value = itemDescInput.value.value
+      item.boxes = newBoxesValue
       message.value = false;
       editing.value = false;
-      const newBoxes = itemBoxesInput.value.value
       currentCharacter.value.item.name = itemNameInput.value.value;
       currentCharacter.value.item.description = itemDescInput.value.value;
-      currentCharacter.value.item.boxes = Number(newBoxes);
+      currentCharacter.value.item.boxes = newBoxesValue;
       spaStore.charUpdate();
     }
 };
-
+const cancelInput = () => {
+  item.name = originalFieldValue.value
+  item.description = originalDescValue.value
+  item.boxes = originalBoxesValue.value
+  itemBoxesInput.value = originalBoxesValue.value
+  editing.value = false
+  
+  console.log("CANCEL INPUT CALLED", originalDescValue.value)
+};
 onMounted(() => {
   if (!currentCharacter.value.s_items[props.itemIndex].name || !currentCharacter.value.s_items[props.itemIndex].description){
     console.log("MOUNTED: ITEM HAS NO NAME")

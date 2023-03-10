@@ -16,10 +16,13 @@
 body {
     background-color: #4b0082;
     background-image: url("graphics/bg.png");
+    background-position-y: -600px;;
+    background-position-x: 220px;
     background-attachment: fixed;
     margin: 0;
     color: #3355FF;
 }
+
 
 .hidden {
     display:none;
@@ -37,7 +40,6 @@ body {
     padding-right: -1px;
     max-width: 1080px;
     height: auto;
-    
 }
 
 .addchar {
@@ -51,7 +53,7 @@ body {
 
   .addchar input[type="text"] {
     background-color: #1c1c1e;
-    color: #0CE982;
+    color: #00ff80;
     border: none;
     border-radius: 4px;
     padding: 10px;
@@ -93,6 +95,7 @@ body {
   .addchar .btn-success:hover {
     background-color: #253;
   }
+
 .pointer{
     cursor: pointer;
 }
@@ -121,7 +124,8 @@ body {
     border-top: 1px solid white;
     border-bottom: 1px solid white;
     width: 1080px;
-    margin-left: 2px;
+    left: 50%;
+    margin-left: -539px;
     height: 34px;
     z-index: 9;
     list-style:none;
@@ -131,7 +135,7 @@ body {
     
 }
 .nav a{
-    color:#0CE982;
+    color:#00ff80;
     text-decoration: none;
     height: 100%;
 }
@@ -285,6 +289,7 @@ body {
     background: black;
     border: 6px solid black;
     overflow: hidden;
+    cursor: pointer;
 }
 .image1, .image2{
     height: 198px;
@@ -310,12 +315,14 @@ body {
     position: absolute;
     top: 142px;
     left: 345px;
+    cursor: pointer;
 
 }
 .traumabar {
     position: absolute;
     top: 142px;
     left: 665px;
+    cursor: pointer;
 }
 .traumalist {
     position: absolute;
@@ -394,6 +401,7 @@ body {
     position: absolute;
     top: 202px;
     left: 910px;
+    cursor: pointer;
 }
 .ship_description .shipsize{
     position: absolute;
@@ -683,6 +691,7 @@ body {
     font-size: 12px;
     color: #cccccc;
     padding: 2px;
+    cursor: pointer;
 }
 .crew-upgrade div{
     margin: 2px;
@@ -735,11 +744,13 @@ body {
     position: relative;
     top: 5px;
     z-index: 17;
+    cursor: pointer;
 }
 .coolbar{
     position: relative;
     top: 23px;
     left: -195px;
+    cursor: pointer;
 }
 .wanted{
     position: absolute;
@@ -760,6 +771,9 @@ body {
 }
 
 /* SHIP ABILITIES */
+.ability{
+    cursor: pointer;
+}
 .ship-abilities{
     position:relative;
     top: 940px;
@@ -782,11 +796,12 @@ body {
 }
 .ship-abilities .ability-content{
     position: relative;
+    z-index: 50;
 }
 .ship-abilities .ability-content p{
     margin: auto;
     padding-right: 10px;
-    width: 310px;
+    width: 300px;
     text-align: right;
     color: #888888;
 }
@@ -799,7 +814,7 @@ body {
     position: relative;
     width: 45px;
     height: 26px;
-    z-index: 999;
+    z-index: 49;
 }
 .ship-ability-add-button button{
     position:absolute;
@@ -807,6 +822,7 @@ body {
     left:636px;
     border: none;
     background: transparent;   
+    cursor: pointer;
 }
 
 .ship-ability-add-button button img{
@@ -844,6 +860,9 @@ body {
     right: 1px;
     top:4px;
 }
+.note{
+    cursor: pointer;
+}
 .ship-notes {
     color:#666666;
     font-family: Zekton;
@@ -865,8 +884,6 @@ body {
 }
 .ship-notes .notelist b{
     color: white;
-    
-    
 }
 .ship-notes .notelist div{
     padding-bottom: 1px;
@@ -892,20 +909,25 @@ body {
     outline: none;
 
 }
-.ship-notes .add-button{
+.ship-notes .notes-add-button{
     position: relative;
     width: 45px;
     height: 26px;
     z-index: 999;
+    left: 30px;
+    top: 12px;
 }
-.ship-notes .add-button button{
+.ship-notes .notes-add-button img{
     position:absolute;
-    top:-13px;
-    left:60px;
+    top:0;
+    left:0;
+}
+.ship-notes .notes-add-button button{
     -webkit-transform: scaleX(-1);
     transform: scaleX(-1);
     border: none;
     background: transparent;   
+    cursor: pointer;
 }
 .ship-notes{
     cursor: pointer;
@@ -1058,7 +1080,7 @@ body {
     left: 2px;
     width: 200px;
     overflow: hidden;
-    color:#0CE982;
+    color:#00ff80;
 }
 .harm2_2{
     position:absolute;
@@ -1066,7 +1088,7 @@ body {
     left: 214px;
     width: 200px;
     overflow: hidden;
-    color:#0CE982;
+    color:#00ff80;
 }
 .harm1_1{
     position:absolute;
@@ -1108,6 +1130,7 @@ body {
     background-repeat: no-repeat;
     background-position-x: 10px;
     background-position-y: 10px;
+    cursor: pointer;
 }
 .cred_up:hover{
     background-image: url("graphics/plus-hover.png");
@@ -1120,6 +1143,7 @@ body {
     background-repeat: no-repeat;
     background-position-x: 10px;
     background-position-y: 10px;
+    cursor: pointer;
 }
 .cred_down:hover{
     background-image: url("graphics/minus_hover.png");
@@ -1139,6 +1163,7 @@ body {
     background-repeat: no-repeat;
     background-position-x: 10px;
     background-position-y: 10px;
+    cursor: pointer;
 }
 .stash_up:hover{
     background-image: url("graphics/right_hover.png");
@@ -1153,6 +1178,7 @@ body {
     background-repeat: no-repeat;
     background-position-x: 10px;
     background-position-y: 10px;
+    cursor: pointer;
 }
 .stash_down:hover{
     background-image: url("graphics/left_hover.png");
@@ -1186,12 +1212,11 @@ body {
     left: 0;
     top: 837px;
     font-family: Zekton;
-    
     letter-spacing: .5px;
     font-size: 10pt;
     color: #CDCDCD;
-
 }
+
 .regular_items .item-div{
     margin:4px;
     padding-left: 3px;
@@ -1201,8 +1226,11 @@ body {
     background-image: url("graphics/itembg.png");
     background-repeat:no-repeat;
     height: 23px;
-    width: 165px;
+    width: 206px;
+    white-space: nowrap;
     cursor:default;
+    
+    
 }
 .regular_items .item-div img{
     margin-bottom: -2px;
@@ -1211,7 +1239,6 @@ body {
     cursor:pointer;
 }
 .regular_items .item-div:hover{
-    
     padding-left: 4px;
     background-image: url("graphics/itembg_hover.png");
 }
@@ -1219,7 +1246,7 @@ body {
     font-style:italic;
 }
 .regular_items .edit-button{
-    right:0;
+    right:-2px;
     float:right;
 }
 .edit-button{
@@ -1253,7 +1280,7 @@ body {
 
 .special_items{
     position: absolute;
-    left: 183px;
+    left: 224px;
     top: 837px;
     font-family: OpenSans;
     height:370px;
@@ -1342,81 +1369,92 @@ body {
     transition: opacity .2s;
 }
 
-
-.column-right{
-    position: absolute;
-    left: 500px;
-    top: 820px;
+/* CHARACTER ABILITIES */
+.char-abilities{
+    position: relative;
+    top: -30px;
+    left: 58px;
 }
-.column-right .notes-title{
-    padding-top: 10px;
-}
-.column-right img{
-    position:relative;
-    left: 20px;
-    top:4px;
-}
-.abilities .ability{
-    background-image: url("graphics/ability_bg.png");
-    background-repeat: repeat-y;
-    padding-left: 30px;
-    padding-right: 30px;
-    margin-bottom: 8px;
-    color: #999999;
+.char-abilities .ability{
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    position: relative;
+    background-image: url("graphics/char-ability-bg.png");
+    background-repeat: no-repeat;
+    min-height: 135px;
+    width: 543px;
+    
+    color: white;
     font-family: Zekton;
     font-variant:small-caps;
     letter-spacing: 1px;
     font-size: 12pt;
-    border-left: 1px solid #999999;
-    border-top: 1px solid #999999;
-    border-bottom: 1px solid #999999;
-    width: 520px;
-    height: auto;
-    cursor: pointer;
-}
-.abilities b{
-    color: #FFFFFF;
 }
 
-.add-button{
+.char-abilities .ability-content{
+    position: relative;
+    z-index:500;
+}
+.char-abilities .ability-content p{
+    margin: auto;
+    padding-right:30px;
+    width: 380px;
+    text-align: right;
+    color: #888888;
+}
+.char-abilities .ability-content p b{
+    color: white;
+}
+
+.char-ability-add-button{
     position: relative;
     width: 45px;
     height: 26px;
-    z-index: 999;
+    z-index: 100;
 }
-.add-button button{
+.char-ability-add-button button{
     position:absolute;
-    top:-9px;
-    left:537px;
+    top:-105px;
+    left:57px;
     border: none;
-    background: transparent;   
+    background: transparent;
+    z-index: 1;
 }
-.notelist .add-button{
-    top:46px;
-    right: 25px;
-}
-.add-button button img{
+
+.char-ability-add-button button img{
     position: absolute;
     top: 0;
     left: 0;
 }
-.add-button .image-main{
+.char-ability-add-button .image-main{
     opacity:1
 }
-.add-button:hover .image-main{
+.char-ability-add-button:hover .image-main{
     opacity:0;
     transition: opacity .2s;
 }
-.add-button .image-hover{
+.char-ability-add-button .image-hover{
     opacity:0;
     z-index: 99;
 }
-.add-button:hover .image-hover{
+.char-ability-add-button:hover .image-hover{
     opacity: 1;
     transition: opacity .2s;
 }
 
-.notes {
+/* CHARACTER NOTES */
+.char-column-right{
+    position: relative;
+    top: 800px;
+    left: 490px;
+}
+.char-notes-title{
+    position: relative;
+    left:15px;
+    top: 4px;
+}
+.char-notes {
     color:#666666;
     font-family: Zekton;
     letter-spacing: .5px;
@@ -1430,27 +1468,27 @@ body {
     margin-bottom: -1px;
     width:576px;
 }
-.notes .notelist{
+.char-notes .notelist{
     min-height: 100px;
     padding-left: 20px;
     border-left: 1px solid magenta;
 }
-.notes .notelist b{
+.char-notes .notelist b{
     color: white;
     
     
 }
-.notes .notelist div{
+.char-notes .notelist div{
     padding-bottom: 1px;
     padding-top: 5px;
 }
-.notes .notelist div:not(:last-child){
+.char-notes .notelist div:not(:last-child){
     background-image: url("graphics/notes_sep.png");
     background-repeat: no-repeat;
     background-position: bottom;
     background-position-x: 10px;
 }
-.notes .notelist input{
+.char-notes .notelist input{
     font-family: Zekton;
     font-weight: bold;
     width: 536px;
@@ -1458,15 +1496,43 @@ body {
     border: none;
     color: #666666;
 }
-.notes .notelist input[type=text]:focus{
+.char-notes .notelist input[type=text]:focus{
     border: hidden;
     outline: none;
-
 }
-.note{
-    cursor: pointer;
+.char-notes .notes-add-button{
+    position: relative;
+    top: 33px;
+    left: 512px;
+    width: 45px;
+    height: 26px;
+    z-index: 999;
 }
-
+.char-notes .notes-add-button button{
+    border: none;
+    background: transparent;   
+}
+.char-notes .notes-add-button img{
+    position:absolute;
+    top:0;
+    left:0;
+    cursor:pointer;
+}
+.notes-add-button .image-main{
+    opacity:1
+}
+.notes-add-button:hover .image-main{
+    opacity:0;
+    transition: opacity .2s;
+}
+.notes-add-button .image-hover{
+    opacity:0;
+    z-index: 99;
+}
+.notes-add-button:hover .image-hover{
+    opacity: 1;
+    transition: opacity .2s;
+}
 
 
 .modal-overlay {
@@ -1480,6 +1546,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    
   }
   
   .editable-input{
@@ -1498,7 +1565,7 @@ body {
     z-index: 1000;
     background-color: #000000;
     border: 2px solid purple;
-    color:#0CE982;
+    color:#00ff80;
     padding: 5px;
     border-radius: 5px;
     text-align: center;
@@ -1527,6 +1594,7 @@ body {
     border-top: 2px solid #1155CC;
     border-left: 2px solid #1155CC;
     flex: 1;
+    
   }
   .edit-item textarea{
     float:right;
@@ -1543,9 +1611,11 @@ body {
     border-left: 2px solid #1155CC;
     flex: 1;
     width: 400px;
+    
   }
   .edit-item textarea:focus{
-    outline:#0CE982;
+    outline:#00ff80;
+    
   }
   .edit-item input[type=number]{
     width: 60px;
@@ -1553,7 +1623,7 @@ body {
     margin-left: 18px;
   }
   .edit-item input:focus{
-    outline:#0CE982;
+    outline:#00ff80;
   }
   
   .edit-item label{
@@ -1561,7 +1631,7 @@ body {
     margin: 3px;
     padding-top:4px;
     text-align:right;
-    color:#0CE982;
+    color:#00ff80;
   }
   
   .editable-input .edit-item label{
@@ -1607,3 +1677,208 @@ body {
     font-size: 14px;
     font-weight: bold;
   }
+
+
+  /* SIGN-IN/UP */
+.signin .signupSection{
+    background-image: url("graphics/splash.png");
+    background-repeat: no-repeat;
+}
+.register .signupSection{
+    background-image: url("graphics/splash2.png");
+    background-repeat: no-repeat;
+}
+.signupSection {
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    width: 795px;
+    height: 480px;
+    text-align: center;
+    font-family:zekton;
+    display: flex;
+    color: white;
+}
+
+.signupSection.signin .signupForm{
+    top: -10px;
+}
+  
+.signupForm{
+    position: relative;
+    margin: auto;
+    color: cyan;
+}
+.signin h2{
+    top: -8px;
+}
+.register h2{
+    top: 16px;
+}
+.signupForm h2{
+
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+}
+.left-box {
+    width: 316px;
+    background: transparent;
+}
+
+
+
+/* FORM FIELDS */
+.noBullet {
+    list-style-type: none;
+    padding: 0;
+    position: relative;
+}
+.signin .noBullet{
+    top: 50px;
+}
+.register .noBullet{
+    top: 73px;
+}
+
+#email, #password, #confirm-password{
+    position: relative;
+    margin: 6px;
+    background: transparent;
+    text-align: center;
+    color: #00ff80;
+    font-family: zekton;
+    font-size: 18px;
+    height: 34px;
+}
+#email, #password, #confirm-password{
+    outline: none;
+    border: none;
+}
+#email{
+width: 400px;
+top: -3px;
+}
+#confirm-password{
+width: 300px;
+top:-4px;
+}
+#password{
+top: -3px;
+}
+
+/* BUTTONS */
+.signin .or{
+position: relative;
+    top: 35px;
+}
+.signin .form-button{
+    top: 70px;
+}
+.signin .or{
+    top: 65px;
+}
+.register .or{
+    position: relative;
+    top: 70px;
+}
+.register .form-button{
+    top: 80px;
+}
+.register .google{
+    top:70px;
+}
+
+.form-button{
+position: relative;
+margin:auto;
+left: 5px;
+border: none;
+cursor: pointer;
+height: 32px;
+width:250px;
+font-family: metro;
+font-size: 10px;
+color: #eeeeee;
+text-shadow:
+2px 2px 0 #000000,
+2px 2px 0 #000000,
+2px 2px 0 #000000,
+2px 2px 0 #000000;
+text-align: center;
+}
+.signupSection.register .form-button{
+top: 50px;
+}
+.form-button p{
+position: relative;
+text-align: center;
+height: 32px;
+top:9px;
+}
+.form-button img{
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+}
+.form-button .image-main{
+opacity:1
+}
+.form-button:hover .image-main{
+opacity:0;
+transition: opacity .2s ease-in-out;
+}
+.form-button .image-hover{
+opacity:0;
+}
+.form-button:hover .image-hover{
+    opacity: 1;
+    transition: opacity .1s ease-in-out;
+}
+.form-button.google{
+    left: 5px;
+}
+.form-button.google p{
+    left: 15px;
+}
+
+
+/* LINKS/ERROR */
+.signupForm a{
+    position: relative;
+    color: #00ff80;
+    font-size: 14px;
+    cursor: pointer;
+    left: 5px;
+}
+.signupForm a:hover{
+    color: #33ffAA;
+    text-decoration:underline;
+}
+.signin a{
+    top: 70px;
+}
+.register a{
+    top: 60px;
+}
+.errMsg{
+    position: absolute;
+    width: 500px;
+    top: 180px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    font-variant:small-caps;
+    color:#ff0065;
+}
+.register .errMsg{
+    top: 130px;
+}
+.signin .errMsg{
+    top: 85px;
+}

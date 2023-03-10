@@ -99,6 +99,7 @@ const updateItemData = () => {
       message.value = false;
       editing.value = false;
       currentObject.value.abilities[props.itemIndex] = abilityTextInput.value.value;
+      originalAbilityText.value = abilityTextInput.value.value;
       if(props.type === "character"){
         spaStore.charUpdate();
       }

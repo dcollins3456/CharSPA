@@ -99,6 +99,7 @@
         message.value = false;
         editing.value = false;
         currentObject.value.notes[props.itemIndex] = noteTextInput.value.value;
+        originalNoteText.value = noteTextInput.value.value;
         if(props.type === "character"){
           spaStore.charUpdate();
         }

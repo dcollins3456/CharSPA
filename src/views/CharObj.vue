@@ -1,5 +1,5 @@
 <template>
-  <div v-if="currentCharacter" class="character">
+  <div v-if="currentCharacter" class="character content_bg">
     <div class="sheet-content">
     
       <!-- character Title -->
@@ -195,31 +195,34 @@
     </div>
     
     <!-- Abilities and Notes -->
-    <div class="column-right">
-      <div class="abilities" v-for="(item, index) in currentCharacter.abilities" :key="item.index" >
-        <div class="ability">
-          <AbilityItem type="character" :itemIndex="index" />
-        </div>
-      </div>
-      <div @click="()=>addAbility()" class="add-button">
-        <button>
-          <img class="image-hover" src="graphics/plus-add-hover.png" />
-          <img class="image-main" src="graphics/plus-add.png" />
-        </button>
-      </div>
-      <img class="notes-title" src="graphics/notes_title.png" />
-      <div class="notes">
-        <div class="notelist">
-          <div class="note" v-for="(item, index) in currentCharacter.notes" :key="item.index" >
-            <NoteItem type="character" :itemIndex="index" />
+    <div class="char-column-right">
+      <div class="char-abilities" >
+          <div class="ability" v-for="(item, index) in currentCharacter.abilities" :key="item.index" >
+              <AbilityItem type="character" :itemIndex="index" />
           </div>
-          <div @click="()=>addNote()" class="add-button">
-            <button>
-              <img class="image-hover" src="graphics/plus-add2-hover.png" />
-              <img class="image-main" src="graphics/plus-add2.png" />
-            </button>
+      </div>
+      <div @click="()=>addAbility()" class="char-ability-add-button">
+          <button>
+          <img class="image-hover" src="graphics/char-add-button-hover.png" />
+          <img class="image-main" src="graphics/char-add-button.png" />
+          </button>
+          <img class="divider" src="graphics/divider.png" />
+      </div>
+      
+      
+      <img class="char-notes-title" src="graphics/char-notes-title.png" />
+      <div class="char-notes">
+          <div class="notelist">
+            <div class="note" v-for="(item, index) in currentCharacter.notes" :key="item.index" >
+                <NoteItem type="character" :itemIndex="index" />
+            </div>
+            <div @click="()=>addNote()" class="notes-add-button">
+                <button>
+                  <img class="image-hover" src="graphics/plus-add2-hover.png" />
+                  <img class="image-main" src="graphics/plus-add2.png" />
+                </button>
+            </div>
           </div>
-        </div>
       </div>
     </div>
 
