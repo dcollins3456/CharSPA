@@ -14,6 +14,7 @@ export const useSpaStore = defineStore({
     Characters: [],
     currentShip: {},
     currentCharacter: {},
+    currentUser: {},
   }),
   getters: {
     isCrewUpgradeSelected: (state) => (desc) => {
