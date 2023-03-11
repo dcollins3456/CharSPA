@@ -1,7 +1,7 @@
 <template>
     <div @click="toggleCrewgear">
       <img v-for="n in props.numBoxes" :key="n" :src="checkedImage" />
-      <span>{{ desc }}</span>
+      <span>{{  }}</span>
     </div>
 </template>
 <script setup>
@@ -34,7 +34,7 @@ const toggleCrewgear = () => {
 }
 
 const checkedImage = computed(() => {
-    return isChecked.value ? 'graphics/checked-green.png' : 'graphics/unchecked.png'
+    return isChecked.value ? "graphics/checked-green.png" : "graphics/unchecked.png"
 })
     
 </script>

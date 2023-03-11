@@ -8,13 +8,13 @@
           }"
           v-for="i in item.boxes"
           :key="i"
-          :src="item.isChecked ? 'graphics/checked.png' : 'graphics/unchecked.png'"
+          :src="item.isChecked ? '/graphics/checked.png' : '/graphics/unchecked.png'"
           />
           {{ item.name }}
         </a>
         <div class="edit-button" @click="triggerEditing()">
-            <img class="image-hover" src="graphics/edit-hover.png" />
-            <img class="image-main" src="graphics/edit.png" />
+            <img class="image-hover" src="/graphics/edit-hover.png" />
+            <img class="image-main" src="/graphics/edit.png" />
         </div>
         <div v-on:click.self="cancelInput()" class="modal-overlay" v-show="editing">
             <form
@@ -44,12 +44,12 @@
                 @keyup.enter.prevent="updateItemData(); editing = false;"
               />
               <button @click="editing = false;" class="edit-item">
-                <img class="image-hover" src="graphics/cancel-hover.png" />
-                <img class="image-main" src="graphics/cancel.png" />
+                <img class="image-hover" src="/graphics/cancel-hover.png" />
+                <img class="image-main" src="/graphics/cancel.png" />
               </button>
               <button @click="updateItemData(); editing = false;" class="edit-item">
-                <img class="image-hover" src="graphics/save-hover.png" />
-                <img class="image-main" src="graphics/save.png" />
+                <img class="image-hover" src="/graphics/save-hover.png" />
+                <img class="image-main" src="/graphics/save.png" />
               </button>
               
             </form>

@@ -18,14 +18,14 @@
                 <p class="errMsg" v-if="errMsg">{{ errMsg }}</p>
             </ul>
             <div @click="signin" class="form-button">
-              <img class="image-hover" src="graphics/form-button-hover.png" />
-              <img class="image-main" src="graphics/form-button.png" />
+              <img class="image-hover" src="/graphics/form-button-hover.png" />
+              <img class="image-main" src="/graphics/form-button.png" />
               <p>Submit</p>
             </div><br>
-            <img class="or" src="graphics/or.png"/>
+            <img class="or" src="/graphics/or.png"/>
             <div @click="signInWithGoogle" class="form-button google">
-              <img class="image-hover" src="graphics/form-google-button-hover.png" />
-              <img class="image-main" src="graphics/form-google-button.png" />
+              <img class="image-hover" src="/graphics/form-google-button-hover.png" />
+              <img class="image-main" src="/graphics/form-google-button.png" />
               <p>Sign in with Google</p>
             </div><br>
             <a @click="redirectToRegisterUser()">New to CharSPA? Please register here...</a>

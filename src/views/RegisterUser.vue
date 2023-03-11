@@ -22,14 +22,14 @@
               <p class="errMsg" v-if="errMsg">{{ errMsg }}</p>
           </ul>
           <div @click="register" class="form-button">
-            <img class="image-hover" src="graphics/form-button-hover.png" />
-            <img class="image-main" src="graphics/form-button.png" />
+            <img class="image-hover" src="/graphics/form-button-hover.png" />
+            <img class="image-main" src="/graphics/form-button.png" />
             <p>Register</p>
           </div><br>
-          <img class="or" src="graphics/or.png"/>
+          <img class="or" src="/graphics/or.png"/>
           <div @click="registerWithGoogle" class="form-button google">
-            <img class="image-hover" src="graphics/form-google-button-hover.png" />
-            <img class="image-main" src="graphics/form-google-button.png" />
+            <img class="image-hover" src="/graphics/form-google-button-hover.png" />
+            <img class="image-main" src="/graphics/form-google-button.png" />
             <p>Sign up using Google</p>
           </div><br>
           <a @click="redirectToLogIn()">Already registered?  Log in => </a>

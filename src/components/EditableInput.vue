@@ -30,12 +30,12 @@
           @keyup.enter.prevent="callUpdate(); editing = false;"
         />
         <button type="button" @click="cancelInput('hello from cancel button');" class="edit-item">
-          <img class="image-hover" src="graphics/cancel-hover.png" />
-          <img class="image-main" src="graphics/cancel.png" />
+          <img class="image-hover" src="/graphics/cancel-hover.png" />
+          <img class="image-main" src="/graphics/cancel.png" />
         </button>
         <button type="button" @click="callUpdate(); editing = false;" class="edit-item">
-          <img class="image-hover" src="graphics/save-hover.png" />
-          <img class="image-main" src="graphics/save.png" />
+          <img class="image-hover" src="/graphics/save-hover.png" />
+          <img class="image-main" src="/graphics/save.png" />
         </button>
       </form>
     </div>

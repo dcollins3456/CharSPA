@@ -8,14 +8,14 @@
         }" 
         v-for="i in item.boxes" 
         :key="i" 
-        :src="item.isChecked ? 'graphics/checked.png' : 'graphics/unchecked.png'" 
+        :src="item.isChecked ? '/graphics/checked.png' : '/graphics/unchecked.png'" 
         />
 
         <p class="s_item_name">{{ item.name }}</p>
 
         <div @click="triggerEditing()" class="edit-button">
-            <img class="image-hover" src="graphics/edit-hover.png" />
-            <img class="image-main" src="graphics/edit.png" />
+            <img class="image-hover" src="/graphics/edit-hover.png" />
+            <img class="image-main" src="/graphics/edit.png" />
         </div>
 
         <p>{{ item.description }}</p>
@@ -36,8 +36,8 @@
           @keyup.enter.prevent="updateItemData(); if(!message){editing = false};"
         />
         <div class="edit-button">
-          <img class="image-hover" src="graphics/edit-hover.png" />
-          <img class="image-main" src="graphics/edit.png" />
+          <img class="image-hover" src="/graphics/edit-hover.png" />
+          <img class="image-main" src="/graphics/edit.png" />
         </div>
         <br />
         <label for="itemDescInput">Description:</label>
@@ -62,16 +62,16 @@
           @keyup.enter.prevent="updateItemData(); if(!message){editing = false};"
         />
         <button type="button" @click="updateItemData(); if(!message){editing = false};" class="edit-item">
-          <img class="image-hover" src="graphics/save-hover.png" />
-          <img class="image-main" src="graphics/save.png" />
+          <img class="image-hover" src="/graphics/save-hover.png" />
+          <img class="image-main" src="/graphics/save.png" />
         </button>
         <button type="button" @click="cancelInput();" class="edit-item">
-          <img class="image-hover" src="graphics/cancel-hover.png" />
-          <img class="image-main" src="graphics/cancel.png" />
+          <img class="image-hover" src="/graphics/cancel-hover.png" />
+          <img class="image-main" src="/graphics/cancel.png" />
         </button>
         <button type="button" @click="deleteItem();" class="edit-item">
-          <img class="image-hover" src="graphics/delete-hover.png" />
-          <img class="image-main" src="graphics/delete.png" />
+          <img class="image-hover" src="/graphics/delete-hover.png" />
+          <img class="image-main" src="/graphics/delete.png" />
         </button> <br><br>
         <span class="message" v-if="message">Please enter item name and description.</span>
       </form>

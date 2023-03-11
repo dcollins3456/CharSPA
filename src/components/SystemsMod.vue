@@ -2,7 +2,7 @@
   <div class="mod-div">
     <div v-if="mod.modname != 'empty'">
       <img 
-        :src="mod.isChecked ? 'graphics/mod-checked.png' : 'graphics/mod-unchecked.png'" 
+        :src="mod.isChecked ? '/graphics/mod-checked.png' : '/graphics/mod-unchecked.png'" 
         @click="() => {
           mod.isChecked = !mod.isChecked; 
           updateModData();
@@ -11,7 +11,7 @@
       <span @click="triggerEditing()">{{mod.modname}}</span>
     </div>
     <div v-else>
-      <img @click="triggerEditing()" src="graphics/mod-empty.png" />
+      <img @click="triggerEditing()" src="/graphics/mod-empty.png" />
     </div>
     <div v-on:click.self="cancelInput(); editing = false;" class="modal-overlay" v-show="editing">
       <form
@@ -29,16 +29,16 @@
           @keydown.enter.prevent="updateModData(); editing = false;"
         />
         <button @keydown.enter.prevent @click="cancelInput(); editing = false;" class="edit-item">
-          <img class="image-hover" src="graphics/cancel-hover.png" />
-          <img class="image-main" src="graphics/cancel.png" />
+          <img class="image-hover" src="/graphics/cancel-hover.png" />
+          <img class="image-main" src="/graphics/cancel.png" />
         </button>
         <button @keydown.enter.prevent @click="updateModData(); editing = false;" class="edit-item">
-          <img class="image-hover" src="graphics/save-hover.png" />
-          <img class="image-main" src="graphics/save.png" />
+          <img class="image-hover" src="/graphics/save-hover.png" />
+          <img class="image-main" src="/graphics/save.png" />
         </button>
         <button @keydown.enter.prevent @click="deleteMod();" class="edit-item">
-          <img class="image-hover" src="graphics/delete-hover.png" />
-          <img class="image-main" src="graphics/delete.png" />
+          <img class="image-hover" src="/graphics/delete-hover.png" />
+          <img class="image-main" src="/graphics/delete.png" />
         </button>
       </form>
     </div>

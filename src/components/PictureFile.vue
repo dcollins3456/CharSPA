@@ -20,12 +20,12 @@
         
         
         <button type="button" @click="if(hasInput){saveFile(); editing = false;}" >
-          <img class="image-hover" src="graphics/save-hover.png" />
-          <img class="image-main" src="graphics/save.png" />
+          <img class="image-hover" src="/graphics/save-hover.png" />
+          <img class="image-main" src="/graphics/save.png" />
         </button>
         <button type="button" @click="editing = false" >
-          <img class="image-hover" src="graphics/cancel-hover.png" />
-          <img class="image-main" src="graphics/cancel.png" />
+          <img class="image-hover" src="/graphics/cancel-hover.png" />
+          <img class="image-main" src="/graphics/cancel.png" />
         </button>
         <span class="info">Information about filesize/type.</span>
         

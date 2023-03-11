@@ -21,18 +21,18 @@
                 <p class="statusMsg" v-if="statusMsg">{{ statusMsg }}</p>
             </ul>
             <div @click="addCharacter({data: newChar})" class="form-button">
-              <img class="image-hover" src="graphics/form-button-hover.png" />
-              <img class="image-main" src="graphics/form-button.png" />
+              <img class="image-hover" src="/graphics/form-button-hover.png" />
+              <img class="image-main" src="/graphics/form-button.png" />
               <p>Submit</p>
             </div>
             <div @click="randomizeFields" class="form-button">
-              <img class="image-hover" src="graphics/form-button-hover.png" />
-              <img class="image-main" src="graphics/form-button.png" />
+              <img class="image-hover" src="/graphics/form-button-hover.png" />
+              <img class="image-main" src="/graphics/form-button.png" />
               <p>Random</p>
             </div>
             <div @click="cancelAdding" class="form-button">
-              <img class="image-hover" src="graphics/form-button-hover.png" />
-              <img class="image-main" src="graphics/form-button.png" />
+              <img class="image-hover" src="/graphics/form-button-hover.png" />
+              <img class="image-main" src="/graphics/form-button.png" />
               <p>Cancel</p>
             </div>
             
@@ -188,7 +188,7 @@ const clearForm = () => {
     newChar.value.pb_description = "";
     const timestamp = Date.now().toString(36);
     const random = Math.random().toString(36).substr(2, 5);
-    const filename = `graphics/pictures/${timestamp}-${random}.png`;
+    const filename = `/graphics/pictures/${timestamp}-${random}.png`;
     console.log("filename generated = ", filename)
 };
 const randomizeFields = () => {

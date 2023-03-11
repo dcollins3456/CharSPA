@@ -22,7 +22,7 @@
 
     <!-- Playbook XP Bar -->
     <div class="pb_xpbar">
-      <img @click="() =>{ if (currentCharacter.pbxp < 8) { currentCharacter.pbxp++ } else { currentCharacter.pbxp = 0 }; spaStore.charUpdate(); }" :src="'graphics/pb_xp'+currentCharacter.pbxp+'.png'" />
+      <img @click="() =>{ if (currentCharacter.pbxp < 8) { currentCharacter.pbxp++ } else { currentCharacter.pbxp = 0 }; spaStore.charUpdate(); }" :src="'/graphics/pb_xp'+currentCharacter.pbxp+'.png'" />
     </div> 
 
     <!-- Character Portrait -->
@@ -32,10 +32,10 @@
 
     <!-- Stress Bar -->
     <div class="stressbar">
-      <img @click="() =>{ if (currentCharacter.stress < 8) { currentCharacter.stress++ } else { currentCharacter.stress = 0 }; spaStore.updateCharacter({id: currentCharacter.id, data:currentCharacter}) }" :src="'graphics/stressbar'+currentCharacter.stress+'.png'" />
+      <img @click="() =>{ if (currentCharacter.stress < 8) { currentCharacter.stress++ } else { currentCharacter.stress = 0 }; spaStore.updateCharacter({id: currentCharacter.id, data:currentCharacter}) }" :src="'/graphics/stressbar'+currentCharacter.stress+'.png'" />
     </div>
     <div class="traumabar">
-      <img @click="() =>{ if (currentCharacter.trauma < 4) { currentCharacter.trauma++ } else { currentCharacter.trauma = 0 }; spaStore.updateCharacter({id: currentCharacter.id, data:currentCharacter})}" :src="'graphics/traumabar'+currentCharacter.trauma+'.png'" />
+      <img @click="() =>{ if (currentCharacter.trauma < 4) { currentCharacter.trauma++ } else { currentCharacter.trauma = 0 }; spaStore.updateCharacter({id: currentCharacter.id, data:currentCharacter})}" :src="'/graphics/traumabar'+currentCharacter.trauma+'.png'" />
     </div>
     
     <!-- Trauma list -->
@@ -114,22 +114,22 @@
     <!-- Attributes -->
     <div class="attributes">
       <div class="insight">
-        <div id="doctor"><img class="pointer" @click="() =>{ if (currentCharacter.doctor < 3) { currentCharacter.doctor++ } else { currentCharacter.doctor = 0 }; spaStore.charUpdate(); }" :src="'graphics/att'+currentCharacter.doctor+'.png'" /></div>
-        <div id="hack"><img class="pointer" @click="() =>{ if (currentCharacter.hack < 3) { currentCharacter.hack++ } else { currentCharacter.hack = 0 }; spaStore.charUpdate(); }" :src="'graphics/att'+currentCharacter.hack+'.png'" /></div>
-        <div id="rig"><img class="pointer" @click="() =>{ if (currentCharacter.rig < 3) { currentCharacter.rig++ } else { currentCharacter.rig = 0 }; spaStore.charUpdate(); }" :src="'graphics/att'+currentCharacter.rig+'.png'" /></div>
-        <div id="study"><img class="pointer" @click="() =>{ if (currentCharacter.study < 3) { currentCharacter.study++ } else { currentCharacter.study = 0 }; spaStore.charUpdate(); }" :src="'graphics/att'+currentCharacter.study+'.png'" /></div>
+        <div id="doctor"><img class="pointer" @click="() =>{ if (currentCharacter.doctor < 3) { currentCharacter.doctor++ } else { currentCharacter.doctor = 0 }; spaStore.charUpdate(); }" :src="'/graphics/att'+currentCharacter.doctor+'.png'" /></div>
+        <div id="hack"><img class="pointer" @click="() =>{ if (currentCharacter.hack < 3) { currentCharacter.hack++ } else { currentCharacter.hack = 0 }; spaStore.charUpdate(); }" :src="'/graphics/att'+currentCharacter.hack+'.png'" /></div>
+        <div id="rig"><img class="pointer" @click="() =>{ if (currentCharacter.rig < 3) { currentCharacter.rig++ } else { currentCharacter.rig = 0 }; spaStore.charUpdate(); }" :src="'/graphics/att'+currentCharacter.rig+'.png'" /></div>
+        <div id="study"><img class="pointer" @click="() =>{ if (currentCharacter.study < 3) { currentCharacter.study++ } else { currentCharacter.study = 0 }; spaStore.charUpdate(); }" :src="'/graphics/att'+currentCharacter.study+'.png'" /></div>
       </div>
       <div class="prowess">
-        <div id="helm"><img class="pointer" @click="() =>{ if (currentCharacter.helm < 3) { currentCharacter.helm++ } else { currentCharacter.helm = 0 }; spaStore.charUpdate(); }" :src="'graphics/att'+currentCharacter.helm+'.png'" /></div>
-        <div id="scramble"><img class="pointer" @click="() =>{ if (currentCharacter.scramble < 3) { currentCharacter.scramble++ } else { currentCharacter.scramble = 0 }; spaStore.charUpdate(); }" :src="'graphics/att'+currentCharacter.scramble+'.png'" /></div>
-        <div id="scrap"><img class="pointer" @click="() =>{ if (currentCharacter.scrap < 3) { currentCharacter.scrap++ } else { currentCharacter.scrap = 0 }; spaStore.charUpdate(); }" :src="'graphics/att'+currentCharacter.scrap+'.png'" /></div>
-        <div id="skulk"><img class="pointer" @click="() =>{ if (currentCharacter.skulk < 3) { currentCharacter.skulk++ } else { currentCharacter.skulk = 0 }; spaStore.charUpdate(); }" :src="'graphics/att'+currentCharacter.skulk+'.png'" /></div>
+        <div id="helm"><img class="pointer" @click="() =>{ if (currentCharacter.helm < 3) { currentCharacter.helm++ } else { currentCharacter.helm = 0 }; spaStore.charUpdate(); }" :src="'/graphics/att'+currentCharacter.helm+'.png'" /></div>
+        <div id="scramble"><img class="pointer" @click="() =>{ if (currentCharacter.scramble < 3) { currentCharacter.scramble++ } else { currentCharacter.scramble = 0 }; spaStore.charUpdate(); }" :src="'/graphics/att'+currentCharacter.scramble+'.png'" /></div>
+        <div id="scrap"><img class="pointer" @click="() =>{ if (currentCharacter.scrap < 3) { currentCharacter.scrap++ } else { currentCharacter.scrap = 0 }; spaStore.charUpdate(); }" :src="'/graphics/att'+currentCharacter.scrap+'.png'" /></div>
+        <div id="skulk"><img class="pointer" @click="() =>{ if (currentCharacter.skulk < 3) { currentCharacter.skulk++ } else { currentCharacter.skulk = 0 }; spaStore.charUpdate(); }" :src="'/graphics/att'+currentCharacter.skulk+'.png'" /></div>
       </div>
       <div class="resolve">
-        <div id="attune"><img class="pointer" @click="() =>{ if (currentCharacter.attune < 3) { currentCharacter.attune++ } else { currentCharacter.attune = 0 }; spaStore.charUpdate(); }" :src="'graphics/att'+currentCharacter.attune+'.png'" /></div>
-        <div id="command"><img class="pointer" @click="() =>{ if (currentCharacter.command < 3) { currentCharacter.command++ } else { currentCharacter.command = 0 }; spaStore.charUpdate(); }" :src="'graphics/att'+currentCharacter.command+'.png'" /></div>
-        <div id="consort"><img class="pointer" @click="() =>{ if (currentCharacter.consort < 3) { currentCharacter.consort++ } else { currentCharacter.consort = 0 }; spaStore.charUpdate(); }" :src="'graphics/att'+currentCharacter.consort+'.png'" /></div>
-        <div id="sway"><img class="pointer" @click="() =>{ if (currentCharacter.sway < 3) { currentCharacter.sway++ } else { currentCharacter.sway = 0 }; spaStore.charUpdate(); }" :src="'graphics/att'+currentCharacter.sway+'.png'" /></div>
+        <div id="attune"><img class="pointer" @click="() =>{ if (currentCharacter.attune < 3) { currentCharacter.attune++ } else { currentCharacter.attune = 0 }; spaStore.charUpdate(); }" :src="'/graphics/att'+currentCharacter.attune+'.png'" /></div>
+        <div id="command"><img class="pointer" @click="() =>{ if (currentCharacter.command < 3) { currentCharacter.command++ } else { currentCharacter.command = 0 }; spaStore.charUpdate(); }" :src="'/graphics/att'+currentCharacter.command+'.png'" /></div>
+        <div id="consort"><img class="pointer" @click="() =>{ if (currentCharacter.consort < 3) { currentCharacter.consort++ } else { currentCharacter.consort = 0 }; spaStore.charUpdate(); }" :src="'/graphics/att'+currentCharacter.consort+'.png'" /></div>
+        <div id="sway"><img class="pointer" @click="() =>{ if (currentCharacter.sway < 3) { currentCharacter.sway++ } else { currentCharacter.sway = 0 }; spaStore.charUpdate(); }" :src="'/graphics/att'+currentCharacter.sway+'.png'" /></div>
       </div>
     </div>
 
@@ -155,27 +155,27 @@
       </div>       
     </div>
     <div class="healthclock">
-      <img @click="() =>{ if (currentCharacter.healthclock < 8) { currentCharacter.healthclock++ } else { currentCharacter.healthclock = 0 }; spaStore.charUpdate(); }" :src="'graphics/healthclock'+currentCharacter.healthclock+'.png'" />
+      <img @click="() =>{ if (currentCharacter.healthclock < 8) { currentCharacter.healthclock++ } else { currentCharacter.healthclock = 0 }; spaStore.charUpdate(); }" :src="'/graphics/healthclock'+currentCharacter.healthclock+'.png'" />
     </div>
 
     <!-- Cred / Stash -->
     <div class="cred">
-      <img :src="'graphics/cred'+currentCharacter.cred+'.png'" />
+      <img :src="'/graphics/cred'+currentCharacter.cred+'.png'" />
       <div class="cred_up" id="cred_up" @click="() => { if (currentCharacter.cred < 4) { currentCharacter.cred++ } else { currentCharacter.cred = 4 }; spaStore.charUpdate(); }"></div>
       <div class="cred_down" id="cred_down" @click="() => { if (currentCharacter.cred > 0) { currentCharacter.cred-- } else { currentCharacter.cred = 0 }; spaStore.charUpdate(); }"></div>
       
     </div>
     <div class="stash">
-      <img v-for="i in 4" :key="i" :src="'graphics/stash'+getStashColumn(i)+'.png'" />
+      <img v-for="i in 4" :key="i" :src="'/graphics/stash'+getStashColumn(i)+'.png'" />
       <div class="stash_up" id="stash_up" @click="() => { if (currentCharacter.stash < 40) { currentCharacter.stash++ } else { currentCharacter.stash = 40 }; spaStore.charUpdate(); }"></div>
       <div class="stash_down" id="stash_down" @click="() => { if (currentCharacter.stash > 0) { currentCharacter.stash-- } else { currentCharacter.stash = 0 }; spaStore.charUpdate(); }"></div>
     </div>
 
     <!-- Armor and Items -->
     <div class="armor">
-      <div @click="() => { currentCharacter.armor = !currentCharacter.armor; spaStore.charUpdate() }">Armor: <img :src="`graphics/${currentCharacter.armor ? 'checked_red.png' : 'unchecked2.png'}`" /></div>
-      <div @click="() => { currentCharacter.heavy = !currentCharacter.heavy; spaStore.charUpdate() }">Heavy: <img :src="`graphics/${currentCharacter.heavy ? 'checked_red.png' : 'unchecked2.png'}`" /></div>
-      <div @click="() => { currentCharacter.special = !currentCharacter.special; spaStore.charUpdate() }">Special: <img :src="`graphics/${currentCharacter.special ? 'checked_red.png' : 'unchecked2.png'}`" /></div>
+      <div @click="() => { currentCharacter.armor = !currentCharacter.armor; spaStore.charUpdate() }">Armor: <img :src="`/graphics/${currentCharacter.armor ? 'checked_red.png' : 'unchecked2.png'}`" /></div>
+      <div @click="() => { currentCharacter.heavy = !currentCharacter.heavy; spaStore.charUpdate() }">Heavy: <img :src="`/graphics/${currentCharacter.heavy ? 'checked_red.png' : 'unchecked2.png'}`" /></div>
+      <div @click="() => { currentCharacter.special = !currentCharacter.special; spaStore.charUpdate() }">Special: <img :src="`/graphics/${currentCharacter.special ? 'checked_red.png' : 'unchecked2.png'}`" /></div>
     </div>
     
     <div class="regular_items">
@@ -189,8 +189,8 @@
         <SpecialItem :itemIndex="index" />
       </div>
       <div @click="addItem()" class="s-add-button">
-        <img class="image-main" src="graphics/s-plus-add.png" />
-        <img class="image-hover" src="graphics/s-plus-add-hover.png" />
+        <img class="image-main" src="/graphics/s-plus-add.png" />
+        <img class="image-hover" src="/graphics/s-plus-add-hover.png" />
       </div>
     </div>
     
@@ -203,14 +203,14 @@
       </div>
       <div @click="()=>addAbility()" class="char-ability-add-button">
           <button>
-          <img class="image-hover" src="graphics/char-add-button-hover.png" />
-          <img class="image-main" src="graphics/char-add-button.png" />
+          <img class="image-hover" src="/graphics/char-add-button-hover.png" />
+          <img class="image-main" src="/graphics/char-add-button.png" />
           </button>
-          <img class="divider" src="graphics/divider.png" />
+          <img class="divider" src="/graphics/divider.png" />
       </div>
       
       
-      <img class="char-notes-title" src="graphics/char-notes-title.png" />
+      <img class="char-notes-title" src="/graphics/char-notes-title.png" />
       <div class="char-notes">
           <div class="notelist">
             <div class="note" v-for="(item, index) in currentCharacter.notes" :key="item.index" >
@@ -218,8 +218,8 @@
             </div>
             <div @click="()=>addNote()" class="notes-add-button">
                 <button>
-                  <img class="image-hover" src="graphics/plus-add2-hover.png" />
-                  <img class="image-main" src="graphics/plus-add2.png" />
+                  <img class="image-hover" src="/graphics/plus-add2-hover.png" />
+                  <img class="image-main" src="/graphics/plus-add2.png" />
                 </button>
             </div>
           </div>

@@ -17,16 +17,16 @@
           ></textarea>
           
           <button type="button" @click="updateItemData(); if(!message){editing = false};" class="edit-item">
-            <img class="image-hover" src="graphics/save-hover.png" />
-            <img class="image-main" src="graphics/save.png" />
+            <img class="image-hover" src="/graphics/save-hover.png" />
+            <img class="image-main" src="/graphics/save.png" />
           </button>
           <button type="button" @click="cancelInput();" class="edit-item">
-            <img class="image-hover" src="graphics/cancel-hover.png" />
-            <img class="image-main" src="graphics/cancel.png" />
+            <img class="image-hover" src="/graphics/cancel-hover.png" />
+            <img class="image-main" src="/graphics/cancel.png" />
           </button>
           <button v-if="currentObject.abilities.length > 1" type="button" @click="deleteItem();" class="edit-item">
-            <img class="image-hover" src="graphics/delete-hover.png" />
-            <img class="image-main" src="graphics/delete.png" />
+            <img class="image-hover" src="/graphics/delete-hover.png" />
+            <img class="image-main" src="/graphics/delete.png" />
           </button> <br><br>
           <span class="message" v-if="message">Enter text, *asterisks* to bold.</span>
         </form>

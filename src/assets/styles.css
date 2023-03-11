@@ -15,7 +15,7 @@
 
 body {
     background-color: #4b0082;
-    background-image: url("graphics/bg.png");
+    background-image: url("/graphics/bg.png");
     background-position-y: -600px;;
     background-position-x: 220px;
     background-attachment: fixed;
@@ -33,7 +33,7 @@ body {
 }
 
 .content_bg {
-    background-image: url("graphics/bgc.png");
+    background-image: url("/graphics/bgc.png");
     background-attachment: fixed;
     margin: auto;
     padding-top: 20px;
@@ -186,10 +186,10 @@ body {
     z-index: 1;
 }
 .character .sheet-content {
-    background-image: url("graphics/charsheet_bg.png");
+    background-image: url("/graphics/charsheet_bg.png");
 }
 .ship .sheet-content {
-    background-image: url("graphics/shipsheet_bg.png");
+    background-image: url("/graphics/shipsheet_bg.png");
 }
 .title {
     font-family: metro;
@@ -470,7 +470,7 @@ body {
 }
 .gambits-button{
     position: relative;
-    background-image: url("graphics/gambits-button.png");
+    background-image: url("/graphics/gambits-button.png");
     top: -62px;
     left: -90px;
     width: 35px;
@@ -478,7 +478,7 @@ body {
     cursor: pointer;
 }
 .gambits-button:hover{
-    background-image: url("graphics/gambits-button-hover.png");
+    background-image: url("/graphics/gambits-button-hover.png");
 }
 
 /* SHIP SYSTEMS */
@@ -512,7 +512,7 @@ body {
 }
 .sys-add-button {
     position: relative;
-    background-image: url("graphics/plus.png");
+    background-image: url("/graphics/plus.png");
     background-repeat:no-repeat;
     width: 20px;
     height: 11px;
@@ -520,7 +520,7 @@ body {
     z-index: 1;
 }
 .sys-add-button:hover{
-    background-image: url("graphics/plus-hover.png")
+    background-image: url("/graphics/plus-hover.png")
 }
 .comms .sys-add-button{
     top: -84px;
@@ -785,7 +785,7 @@ body {
     align-items: center;
     justify-content: right;
     position: relative;
-    background-image: url("graphics/ship-ability-bg.png");
+    background-image: url("/graphics/ship-ability-bg.png");
     background-repeat: no-repeat;
     min-height: 135px;
     width: 443px;
@@ -892,7 +892,7 @@ body {
     padding-left: 5px;
 }
 .ship-notes .notelist div:not(:last-child){
-    background-image: url("graphics/notes_sep.png");
+    background-image: url("/graphics/notes_sep.png");
     background-repeat: no-repeat;
     background-position: bottom;
     background-position-x: 10px;
@@ -1127,27 +1127,27 @@ body {
     position: relative;
     width: 32px;
     height: 38px;
-    background-image: url("graphics/plus.png");
+    background-image: url("/graphics/plus.png");
     background-repeat: no-repeat;
     background-position-x: 10px;
     background-position-y: 10px;
     cursor: pointer;
 }
 .cred_up:hover{
-    background-image: url("graphics/plus-hover.png");
+    background-image: url("/graphics/plus-hover.png");
 }
 .cred_down{
     position: relative;
     width: 32px;
     height: 38px;
-    background-image: url("graphics/minus.png");
+    background-image: url("/graphics/minus.png");
     background-repeat: no-repeat;
     background-position-x: 10px;
     background-position-y: 10px;
     cursor: pointer;
 }
 .cred_down:hover{
-    background-image: url("graphics/minus_hover.png");
+    background-image: url("/graphics/minus_hover.png");
 }
 .stash{
     position: absolute;
@@ -1160,14 +1160,14 @@ body {
     height: 38px;
     left: 89px;
     top: -118px;
-    background-image: url("graphics/right.png");
+    background-image: url("/graphics/right.png");
     background-repeat: no-repeat;
     background-position-x: 10px;
     background-position-y: 10px;
     cursor: pointer;
 }
 .stash_up:hover{
-    background-image: url("graphics/right_hover.png");
+    background-image: url("/graphics/right_hover.png");
 }
 .stash_down{
     position: relative;
@@ -1175,14 +1175,14 @@ body {
     height: 38px;
     left: 0px;
     top: -156px;
-    background-image: url("graphics/left.png");
+    background-image: url("/graphics/left.png");
     background-repeat: no-repeat;
     background-position-x: 10px;
     background-position-y: 10px;
     cursor: pointer;
 }
 .stash_down:hover{
-    background-image: url("graphics/left_hover.png");
+    background-image: url("/graphics/left_hover.png");
 }
 .armor{
     position:absolute;
@@ -1224,7 +1224,7 @@ body {
     padding-top: 3px;
     margin-top: 7px;
     margin-bottom: -5px;
-    background-image: url("graphics/itembg.png");
+    background-image: url("/graphics/itembg.png");
     background-repeat:no-repeat;
     height: 23px;
     width: 206px;
@@ -1241,7 +1241,7 @@ body {
 }
 .regular_items .item-div:hover{
     padding-left: 4px;
-    background-image: url("graphics/itembg_hover.png");
+    background-image: url("/graphics/itembg_hover.png");
 }
 .regular_items .small{
     font-style:italic;
@@ -1295,7 +1295,7 @@ body {
     padding-top: 3px;
     margin-top: 7px;
     margin-bottom: -4px;
-    background-image: url("graphics/item_s_bg.png");
+    background-image: url("/graphics/item_s_bg.png");
     background-repeat: no-repeat;
     vertical-align:middle;
     cursor: default;
@@ -1332,7 +1332,7 @@ body {
     height: 43px;
     padding-left: 5px;
     background-position-x:-1px;
-    background-image: url("graphics/item_s_bg_hover.png");
+    background-image: url("/graphics/item_s_bg_hover.png");
 }
 .special_items .small{
     font-style:italic;
@@ -1381,7 +1381,7 @@ body {
     align-items: center;
     justify-content: right;
     position: relative;
-    background-image: url("graphics/char-ability-bg.png");
+    background-image: url("/graphics/char-ability-bg.png");
     background-repeat: no-repeat;
     min-height: 135px;
     width: 543px;
@@ -1486,7 +1486,7 @@ body {
     
 }
 .char-notes .notelist div:not(:last-child){
-    background-image: url("graphics/notes_sep.png");
+    background-image: url("/graphics/notes_sep.png");
     background-repeat: no-repeat;
     background-position: bottom;
     background-position-x: 10px;
@@ -1684,15 +1684,15 @@ body {
 
   /* SIGN-IN/UP */
 .splash .signupSection{
-    background-image: url("graphics/splash.png");
+    background-image: url("/graphics/splash.png");
     background-repeat: no-repeat;
 }
 .splash2 .signupSection{
-    background-image: url("graphics/splash2.png");
+    background-image: url("/graphics/splash2.png");
     background-repeat: no-repeat;
 }
 .splash3 .signupSection{
-    background-image: url("graphics/splash3.png");
+    background-image: url("/graphics/splash3.png");
     background-repeat: no-repeat;
 }
 
@@ -1930,7 +1930,7 @@ opacity:0;
 
 /* MINI SPLASH MESSAGE */
 .splash-mini{
-    background-image: url("graphics/splash-mini.png");
+    background-image: url("/graphics/splash-mini.png");
     background-repeat: no-repeat;
     width: 478px;
     height: 100px;
