@@ -1,10 +1,10 @@
 <template>
   <div class="nav">
       <div class="nav-item">
-        <router-link to="/crew">{{spaStore.currentShip.designation}}</router-link>
+        <router-link to="/ship-view">{{spaStore.currentShip.designation}}</router-link>
       </div>
       <div v-for="character in spaStore.Characters" :key="character.id" class="nav-item">
-        <router-link to="/:id" @click="spaStore.selectCharacter(character.id)">{{character.charname}}</router-link>
+        <router-link to="/character-view" @click="spaStore.selectCharacter(character.id)">{{character.charname}}</router-link>
       </div>
       <div class="nav-item">
         <router-link to="/add">+New</router-link>

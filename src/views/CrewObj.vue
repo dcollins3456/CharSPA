@@ -257,7 +257,7 @@ import { useSpaStore } from '@/stores/'
 import EditableInput from '@/components/EditableInput.vue'
 import PictureFile from '@/components/PictureFile.vue'
 import SystemsMod from '@/components/SystemsMod.vue'
-import CrewUpgrade from '@/components/CrewUpgrade.vue'
+import CrewUpgrade from '@/components/crewUpgrade.vue'
 import AbilityItem from '@/components/AbilityItem.vue'
 import NoteItem from '@/components/NoteItem.vue'
 

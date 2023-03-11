@@ -3,10 +3,11 @@ import { getAuth, onAuthStateChanged } from 'firebase/auth'
 import CharMenu from '@/views/CharMenu.vue'
 import CharObj from '@/views/CharObj.vue'
 import AddChar from '@/views/AddChar.vue'
-import CrewObj from '@/views/CrewObj.vue'
+import CrewObj from '@/views/crewObj.vue'
 import RegisterUser from '@/views/RegisterUser.vue'
 import SignIn from '@/views/SignIn.vue'
 import EmptyMenu from '@/views/EmptyMenu.vue'
+import PendingAuthorization from '@/views/PendingAuthorization.vue'
 
 
 const router = createRouter({
@@ -16,7 +17,7 @@ const router = createRouter({
       path: "/",
       props: true,
       components: {
-        default: RegisterUser
+        default: SignIn
       }
     },
     {
@@ -36,7 +37,7 @@ const router = createRouter({
     },
     
     {
-      path: "/crew",
+      path: "/ship-view",
       components: {
         "nav-bar": CharMenu,
         default: CrewObj
@@ -46,7 +47,7 @@ const router = createRouter({
       }
     },
     {
-      path: "/:id",
+      path: "/character-view",
       props: true,
       components: {
         "nav-bar": CharMenu,
@@ -59,13 +60,20 @@ const router = createRouter({
     {
       path: "/add",
       components: {
-        "nav-bar": CharMenu,
+        "nav-bar": EmptyMenu,
         default: AddChar
       },
       meta:{
         requiresAuth: true,
       }
     },
+    {
+      path: "/limbo",
+      components:{
+        "nav-bar": EmptyMenu,
+        default: PendingAuthorization
+      }
+    }
   ]
 })
 

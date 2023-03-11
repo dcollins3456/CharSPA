@@ -1,21 +1,44 @@
 <template>
-    <form v-on:submit.prevent="onSubmit" class="addchar">
-        <div class="form-group">
-        <label for="charname">Character Name:</label>
-        <input v-model="newChar.charname" type="text" class="form-control" id="charname">
+  <div class="splash3">
+    <div class="signupSection">
+        <div class="left-box">
         </div>
-        <div class="form-group">
-        <label for="playbook">Playbook:</label>
-        <input v-model="newChar.playbook" type="text" class="form-control" id="playbook">
-        </div>
-        <div class="form-group">
-        <label for="pb_description">Playbook Description:</label>
-        <input v-model="newChar.pb_description" type="text" class="form-control" id="pb_description">
-        </div>
-        <button @click="addCharacter({data: newChar})" type="submit" class="btn btn-primary">Submit</button>
-        <button @click="randomizeFields" class="btn btn-success">Randomize</button>
-        <button @click="clearForm">Clear Form</button>
-    </form>
+        <form @submit.prevent="addchar" class="signupForm">
+            <h2>Add New Character</h2>
+            <ul class="noBullet">
+                <li>
+                    <label for="charname"></label>
+                    <input type="text" placeholder="Character Name" v-model="newChar.charname" id="charname" class="input-field" required/>
+                </li>
+                <li>
+                    <label for="playbook"></label>
+                    <input type="text" placeholder="Playbook"  v-model="newChar.playbook" id="playbook" class="input-field" required/>
+                </li>
+                <li>
+                    <label for="pb_description"></label>
+                    <input type="text" placeholder="Playbook Description..." v-model="newChar.pb_description" id="pb_description" class="input-field" />
+                </li>
+                <p class="statusMsg" v-if="statusMsg">{{ statusMsg }}</p>
+            </ul>
+            <div @click="addCharacter({data: newChar})" class="form-button">
+              <img class="image-hover" src="graphics/form-button-hover.png" />
+              <img class="image-main" src="graphics/form-button.png" />
+              <p>Submit</p>
+            </div>
+            <div @click="randomizeFields" class="form-button">
+              <img class="image-hover" src="graphics/form-button-hover.png" />
+              <img class="image-main" src="graphics/form-button.png" />
+              <p>Random</p>
+            </div>
+            <div @click="cancelAdding" class="form-button">
+              <img class="image-hover" src="graphics/form-button-hover.png" />
+              <img class="image-main" src="graphics/form-button.png" />
+              <p>Cancel</p>
+            </div>
+            
+        </form>
+    </div>
+  </div> 
 </template>
 
 <script setup>
@@ -24,11 +47,14 @@ import randomCharacters from "@/assets/randos.js";
 import { collection, addDoc } from "firebase/firestore";
 import {db} from '@/firebase';
 import { useSpaStore } from '@/stores/'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
 
 const spaStore = useSpaStore()
 const myCrew = "myCrew123"
 let submitted = false;
-
+const statusMsg = ref("");
 
 
 const newChar = ref({ 
@@ -87,7 +113,6 @@ const newChar = ref({
 });
 
 const addCharacter = async ({data}) => {
-
   try {
     const characterData = {
         charname: data.charname,
@@ -147,6 +172,11 @@ const addCharacter = async ({data}) => {
     console.log("Character added successfully!, id: ", docRef.id);
     //console.log('character portraitURL = ', characterData.portraitURL)
     spaStore.fetchCharacters();
+    statusMsg.value = "ADDED! REDIRECTING..."
+    setTimeout(()=>{
+      router.push("/ship-view")
+    }, 3000)
+    
   } catch (error) {
     console.error("Error adding character: ", error);
   }
@@ -168,7 +198,9 @@ const randomizeFields = () => {
     const randomChar = randomCharacters[randomIndex];
     newChar.value = randomChar;
 };
-
+const cancelAdding = () => {
+  router.push("/ship-view")
+}
 onMounted(() => {
   console.log('MOUNTED: newChar = ', newChar)
 })

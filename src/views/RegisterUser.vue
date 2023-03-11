@@ -1,5 +1,5 @@
 <template>
-  <div class="register">
+  <div class="splash2">
     <div class="signupSection">
       <div class="left-box">
       </div>
@@ -50,12 +50,31 @@ const errMsg = ref()
 
 const router = useRouter()
 
+const verifyAuth = () => {
+  const uid = getAuth().currentUser.uid;
+  const docRef = doc(db, "Allowed-Users", uid);
+  console.log(docRef);
+  getDoc(docRef)
+    .then((docSnap) => {
+      if (docSnap.exists()) {
+        console.log("AUTHORIZED USER DETECTED.", docSnap.data());
+        router.push('/ship-view')
+      } else {
+        console.log("&&&&&&&&&&&&&& &&&&&&&&&&&& &&&&&&& USER IS NOT AUTHORIZED.");
+      }
+    })
+    .catch((error) => {
+      router.push('/limbo')
+    });
+};
+
 const register = () => {
   if(password.value == confirm_password.value){
     createUserWithEmailAndPassword(getAuth(), email.value, password.value)
     .then((data) => {
+      
       console.log("REGISTER: ___________ Successful registration!");
-      router.push('/crew');
+      verifyAuth()
     })
     .catch((error) => {
       console.log("REGISTER: ___________ ERROR: ", error.code)
@@ -71,7 +90,8 @@ const registerWithGoogle = () => {
   signInWithPopup(getAuth(), provider)
   .then((result) => {
     console.log("REGISTER: ___________ Successful G-mail account registration!");
-    router.push('/crew');
+    
+    verifyAuth()
   })
   .catch((error) => {
     console.log("REGISTER: ___________ ERROR: ", error.code)
