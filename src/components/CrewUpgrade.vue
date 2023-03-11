@@ -1,7 +1,7 @@
 <template>
     <div @click="toggleCrewgear">
       <img v-for="n in props.numBoxes" :key="n" :src="checkedImage" />
-      <span>{{ desc }}</span>
+      <span>{{  }}</span>
     </div>
 </template>
 <script setup>
