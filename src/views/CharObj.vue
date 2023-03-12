@@ -326,14 +326,6 @@ onMounted(async () => {
   
 })
 
-/* // When we finally have user sessions, do this onMounted instead:
-onMounted(async () => {
-  spaStore.fetchCharacters();
-  const userData = await spaStore.fetchUserData();
-  let id = userData.lastViewedCharacterId || "5r1B5EeEgoDuoyZYcigM";
-  await loadCharacter(id);
-}) */
-
 async function loadCharacter(id) {
   const docRef = doc(db, "Crews/"+myCrew, "Characters", id);
   const docSnap = await getDoc(docRef);
