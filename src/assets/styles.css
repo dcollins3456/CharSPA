@@ -135,6 +135,13 @@ body {
     font-variant:small-caps;
     
 }
+.nav .signout{
+    color: white;
+    cursor: pointer;
+    position: absolute;
+    left: 1000px;
+    top: 5px;
+}
 .nav a{
     color:#00ff80;
     text-decoration: none;
@@ -142,7 +149,7 @@ body {
 }
 .nav a:hover{
     color: #7799FF;
-    transition: color .35s ease-in-out;
+    transition: color .25s ease-in-out;
     animation-name: flash-glow;
     animation-duration: .5s;
     animation-iteration-count: 1;
@@ -303,7 +310,7 @@ body {
     background: transparent;
     width: 307px;
     height: 195px;
-    z-index:99;
+    z-index:30;
 }
 .image1 {
     top: 194px;
@@ -527,7 +534,7 @@ body {
     left: -20px;
 }
 .engines .sys-add-button{
-    top: -68px;
+    top: -64px;
     left: -20px;
 }
 .hull .sys-add-button{
@@ -914,7 +921,7 @@ body {
     position: relative;
     width: 45px;
     height: 26px;
-    z-index: 999;
+    z-index: 199;
     left: 30px;
     top: 12px;
 }
@@ -1374,7 +1381,7 @@ body {
 .char-abilities{
     position: relative;
     top: -30px;
-    left: 115px;
+    left: 55px;
 }
 .char-abilities .ability{
     display: flex;
@@ -1385,7 +1392,6 @@ body {
     background-repeat: no-repeat;
     min-height: 135px;
     width: 543px;
-    
     color: white;
     font-family: Zekton;
     font-variant:small-caps;
@@ -1417,7 +1423,7 @@ body {
 .char-ability-add-button button{
     position:absolute;
     top:-105px;
-    left:114px;
+    left:54px;
     border: none;
     background: transparent;
     z-index: 1;
@@ -1509,7 +1515,7 @@ body {
     left: 497px;
     width: 45px;
     height: 26px;
-    z-index: 999;
+    z-index: 199;
 }
 .char-notes .notes-add-button button{
     border: none;
@@ -1545,7 +1551,7 @@ body {
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
-    z-index: 999;
+    z-index: 399;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1565,7 +1571,7 @@ body {
   }
   
   .edit-item {
-    z-index: 1000;
+    z-index: 500;
     background-color: #000000;
     border: 2px solid purple;
     color:#00ff80;

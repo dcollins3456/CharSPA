@@ -9,10 +9,9 @@
       <div class="nav-item">
         <router-link to="/add">+New</router-link>
       </div>
-      <button class="button" @click="spaStore.deleteAll">
-          Clear Char List
-      </button>
-      <button @click="handleSignOut" v-if="isLoggedIn">Sign Out</button>
+      <a @click="handleSignOut" class="signout">
+        Sign Out
+      </a>
   </div>
 </template>
 
