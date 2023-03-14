@@ -74,8 +74,8 @@
 
   watch(() => currentObject.value[props.value], (newValue) => {
     editableValue.value = newValue;
-
-
+  });
+  
 
   const triggerEditing = () => {
     editing.value = true;

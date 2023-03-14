@@ -3,8 +3,8 @@
       <div class="nav-item">
         <router-link to="/ship-view">{{spaStore.currentShip.designation}}</router-link>
       </div>
-      <div v-for="character in spaStore.Characters" :key="character.id" class="nav-item">
-        <router-link to="/character-view" @click="spaStore.selectCharacter(character.id)">{{character.charname}}</router-link>
+      <div v-for="(character, index) in spaStore.Characters" :key="character.id" class="nav-item">
+        <a @click="spaStore.selectCharacter(character, router)">{{ spaStore.Charnames[index] }}</a>
       </div>
       <div class="nav-item">
         <router-link to="/add">+New</router-link>

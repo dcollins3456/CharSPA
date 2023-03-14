@@ -82,25 +82,14 @@
 </template>
 
 <script setup="props">
-import { nextTick, ref, reactive, computed, watch, onMounted} from "vue";
+import { nextTick, ref, toRef, reactive, computed, watch, onMounted} from "vue";
 import { useSpaStore } from "@/stores/";
 
 const spaStore = useSpaStore();
 
 const props = defineProps({
-    itemName: String,
+    item: Object,
     itemIndex: Number,
-});
-
-const currentCharacter = computed(() => {
-    const character = spaStore.currentCharacter;
-    const items = character.s_items;
-    const item = items[props.itemIndex];
-    return {
-    ...character,
-    items,
-    item,
-    };
 });
 
 const editing = ref(false);
@@ -113,7 +102,7 @@ const itemBoxesInput = ref(null);
 const originalFieldValue = ref("")
 const originalDescValue = ref("")
 const originalBoxesValue = ref(spaStore.currentCharacter.s_items[props.itemIndex].boxes)
-const item = reactive(currentCharacter.value.s_items[props.itemIndex])
+const item = toRef(props, 'item')
 
 const message = ref(false);
 
@@ -143,12 +132,12 @@ const triggerEditing = () => {
 };
 
 const deleteItem = () => {
-  currentCharacter.value.s_items.splice(props.itemIndex, 1);
+  spaStore.currentCharacter.s_items.splice(props.itemIndex, 1);
   spaStore.charUpdate();
   editing.value = false;
 }
 const updateItemData = () => {
-    console.log("updateItemData NAME: ", currentCharacter.value.item.name)
+    console.log("updateItemData NAME: ", item.name)
     
     if(!itemNameInput.value.value || !itemDescInput.value.value){
       console.log("updateItemData: LOCKED", !itemNameInput.value.value)
@@ -161,9 +150,9 @@ const updateItemData = () => {
       item.boxes = newBoxesValue
       message.value = false;
       editing.value = false;
-      currentCharacter.value.item.name = itemNameInput.value.value;
-      currentCharacter.value.item.description = itemDescInput.value.value;
-      currentCharacter.value.item.boxes = newBoxesValue;
+      spaStore.currentCharacter.s_items[props.itemIndex].name = itemNameInput.value.value;
+      spaStore.currentCharacter.s_items[props.itemIndex].description = itemDescInput.value.value;
+      spaStore.currentCharacter.s_items[props.itemIndex].boxes = newBoxesValue;
       spaStore.charUpdate();
     }
 };
@@ -177,7 +166,7 @@ const cancelInput = () => {
   console.log("CANCEL INPUT CALLED", originalDescValue.value)
 };
 onMounted(() => {
-  if (!currentCharacter.value.s_items[props.itemIndex].name || !currentCharacter.value.s_items[props.itemIndex].description){
+  if (!spaStore.currentCharacter.s_items[props.itemIndex].name || !spaStore.currentCharacter.s_items[props.itemIndex].description){
     console.log("MOUNTED: ITEM HAS NO NAME")
     message.value = true;
     editing.value = true;

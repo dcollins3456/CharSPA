@@ -471,8 +471,8 @@ body {
 /* GAMBITS */
 .gambits{
     position: absolute;
-    top: 382px;
-    left: 763px;
+    top: 384px;
+    left: 764px;
     cursor: pointer;
 }
 .gambits-button{
@@ -779,9 +779,6 @@ body {
 }
 
 /* SHIP ABILITIES */
-.ability{
-    cursor: pointer;
-}
 .ship-abilities{
     position:relative;
     top: 940px;
@@ -823,6 +820,7 @@ body {
     width: 45px;
     height: 26px;
     z-index: 49;
+    cursor: pointer;
 }
 .ship-ability-add-button button{
     position:absolute;
@@ -1033,8 +1031,8 @@ body {
 .attribute_xpbars{
     position: absolute;
     left: 930px;
-    top: 155px;
-    padding-bottom: 150px;
+    top: 154px;
+    padding-bottom: 149px;
 }
 .attribute_xpbars img{
     padding-bottom:148px;
@@ -1409,9 +1407,11 @@ body {
     width: 380px;
     text-align: right;
     color: #888888;
+    cursor:pointer
 }
 .char-abilities .ability-content p b{
     color: white;
+    
 }
 
 .char-ability-add-button{
@@ -1427,15 +1427,20 @@ body {
     border: none;
     background: transparent;
     z-index: 1;
+    
+    cursor: pointer;
 }
 
 .char-ability-add-button button img{
     position: absolute;
     top: 0;
     left: 0;
+    
+    
 }
 .char-ability-add-button .image-main{
-    opacity:1
+    opacity:1;
+    
 }
 .char-ability-add-button:hover .image-main{
     opacity:0;
@@ -1443,7 +1448,6 @@ body {
 }
 .char-ability-add-button .image-hover{
     opacity:0;
-    z-index: 99;
 }
 .char-ability-add-button:hover .image-hover{
     opacity: 1;
@@ -1525,7 +1529,7 @@ body {
     position:absolute;
     top:0;
     left:0;
-    cursor:pointer;
+    cursor: pointer;
 }
 .notes-add-button .image-main{
     opacity:1

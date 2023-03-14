@@ -112,6 +112,11 @@
     </div>
 
     <!-- Attributes -->
+    <div class="attribute_xpbars">
+      <img @click="() => { if (currentCharacter.insight_xp < 5) { currentCharacter.insight_xp++ } else { currentCharacter.insight_xp = 0 }; spaStore.charUpdate() }" class="att_xp" :src="'graphics/att_xp'+currentCharacter.insight_xp+'.png'" />
+      <img @click="() => { if (currentCharacter.prowess_xp < 5) { currentCharacter.prowess_xp++ } else { currentCharacter.prowess_xp = 0 }; spaStore.charUpdate() }" class="att_xp" :src="'graphics/att_xp'+currentCharacter.prowess_xp+'.png'" />
+      <img @click="() => { if (currentCharacter.resolve_xp < 5) { currentCharacter.resolve_xp++ } else { currentCharacter.resolve_xp = 0 }; spaStore.charUpdate() }" class="att_xp" :src="'graphics/att_xp'+currentCharacter.resolve_xp+'.png'" />
+    </div>
     <div class="attributes">
       <div class="insight">
         <div id="doctor"><img class="pointer" @click="() =>{ if (currentCharacter.doctor < 3) { currentCharacter.doctor++ } else { currentCharacter.doctor = 0 }; spaStore.charUpdate(); }" :src="'/graphics/att'+currentCharacter.doctor+'.png'" /></div>
@@ -180,13 +185,13 @@
     
     <div class="regular_items">
       <div class="item-div" v-for="(item, index) in currentCharacter.items" :key="item.index">
-        <RegularItem :itemIndex="index" />
+        <RegularItem :itemIndex="index" :item="item" />
       </div>      
     </div>
     
     <div class="special_items">
       <div class="s-item-div" v-for="(item, index) in currentCharacter.s_items" :key="item.index">
-        <SpecialItem :itemIndex="index" />
+        <SpecialItem :itemIndex="index" :item="item" />
       </div>
       <div @click="addItem()" class="s-add-button">
         <img class="image-main" src="/graphics/s-plus-add.png" />
@@ -197,8 +202,8 @@
     <!-- Abilities and Notes -->
     <div class="char-column-right">
       <div class="char-abilities" >
-          <div class="ability" v-for="(item, index) in currentCharacter.abilities" :key="item.index" >
-              <AbilityItem type="character" :itemIndex="index" />
+          <div class="ability" v-for="(ability, index) in currentCharacter.abilities" :key="ability.index" >
+              <AbilityCharacter :ability="ability" :itemIndex="index" />
           </div>
       </div>
       <div @click="()=>addAbility()" class="char-ability-add-button">
@@ -206,15 +211,13 @@
           <img class="image-hover" src="/graphics/char-add-button-hover.png" />
           <img class="image-main" src="/graphics/char-add-button.png" />
           </button>
-          <img class="divider" src="/graphics/divider.png" />
       </div>
-      
       
       <img class="char-notes-title" src="/graphics/char-notes-title.png" />
       <div class="char-notes">
           <div class="notelist">
-            <div class="note" v-for="(item, index) in currentCharacter.notes" :key="item.index" >
-                <NoteItem type="character" :itemIndex="index" />
+            <div class="note" v-for="(note, index) in currentCharacter.notes" :key="note.index" >
+                <NoteCharacter :note="note" :itemIndex="index" />
             </div>
             <div @click="()=>addNote()" class="notes-add-button">
                 <button>
@@ -228,18 +231,19 @@
 
   </div>
   </div>
+  <div v-else>NO CURRENTCHARACTER</div>
 </template>
 
 <script setup>
-import { onMounted, ref, watch, } from "vue"
+import { onMounted, ref, watch, reactive } from "vue"
 import { useSpaStore } from '@/stores/'
 import { doc, getDoc } from "firebase/firestore";
 import {db} from '@/firebase'
 import EditableInput from '@/components/EditableInput.vue'
 import RegularItem from '@/components/RegularItem.vue'
 import SpecialItem from '@/components/SpecialItem.vue'
-import AbilityItem from '@/components/AbilityItem.vue'
-import NoteItem from '@/components/NoteItem.vue'
+import AbilityCharacter from '@/components/AbilityCharacter.vue'
+import NoteCharacter from '@/components/NoteCharacter.vue'
 import PictureFile from '@/components/PictureFile.vue'
 import router from '@/router'
 
@@ -254,7 +258,7 @@ currentCharacter.traumatypes = currentCharacter.traumatypes || []
 watch(() => spaStore.currentCharacter, (newValue) => {
   console.log("CharObj >>> WATCH UPDATE <<< | for spaStore.currentCharacter change to ", spaStore.currentCharacter.charname) // logs proper charname
   currentCharacter.value = newValue
-  })
+})
 
 const getStashColumn = (i) => {
   let stash = currentCharacter.value.stash
@@ -311,9 +315,9 @@ const addNote = () => {
 }
 
 onMounted(async () => {
-  console.log("CharObj >>> MOUNT <<< | fetchCharacters called from CHAROBJ. ")
-  spaStore.fetchCharacters();
-  let id = "Nw31bansXkQ1R1o0Uazu";
+  //console.log("CharObj >>> MOUNT <<< | fetchCharacters called from CHAROBJ. ")
+  //spaStore.fetchCharacters();
+  /*  let id = "Nw31bansXkQ1R1o0Uazu";
   if(spaStore.currentCharacter.id){
     console.log("CharObj >>> MOUNT <<< | spaStore.currentCharacter.value.id = ", spaStore.currentCharacter.id)
     id = spaStore.currentCharacter.id
@@ -322,11 +326,11 @@ onMounted(async () => {
   else{
     console.log("CharObj >>> MOUNT <<< | redirect to '/'")
     router.push('/');
-  }
-  
+  }  */
+  currentCharacter.value = spaStore.currentCharacter
 })
 
-async function loadCharacter(id) {
+/*  async function loadCharacter(id) {
   const docRef = doc(db, "Crews/"+myCrew, "Characters", id);
   const docSnap = await getDoc(docRef);
   if (docSnap.exists()) {
@@ -335,7 +339,7 @@ async function loadCharacter(id) {
   } else {
     console.log("No such document!");
   }
-}
+}  */
 
 </script>
 

@@ -58,25 +58,14 @@
 </template>
 
 <script setup="props">
-import { nextTick, ref, computed, watch, reactive} from "vue";
+import { nextTick, ref, toRef, computed, watch, reactive} from "vue";
 import { useSpaStore } from "@/stores/";
 
 const spaStore = useSpaStore();
 
 const props = defineProps({
-    itemName: String,
+    item: Object,
     itemIndex: Number,
-});
-
-const currentCharacter = computed(() => {
-    const character = spaStore.currentCharacter;
-    const items = character.items;
-    const item = items[props.itemIndex];
-    return {
-    ...character,
-    items,
-    item,
-    };
 });
 
 const editing = ref(false);
@@ -86,7 +75,7 @@ const itemBoxesInput = ref(null)
 
 const originalFieldValue = ref("")
 const originalBoxesValue = ref(spaStore.currentCharacter.items[props.itemIndex].boxes)
-const item = reactive(currentCharacter.value.items[props.itemIndex])
+const item = toRef(props, 'item')
 
 watch(() => item.name, (newValue) => {
   itemNameValue.value = newValue
@@ -112,7 +101,7 @@ const updateItemData = () => {
   const newBoxesValue = Number(itemBoxesInput.value.value)
   originalFieldValue.value = itemNameInput.value.value
   console.log("updating item name, ", originalFieldValue)
-  currentCharacter.value.item.name = itemNameInput.value.value
+  spaStore.currentCharacter.item.name = itemNameInput.value.value
   item.boxes = newBoxesValue
   editing.value = false
   spaStore.charUpdate()

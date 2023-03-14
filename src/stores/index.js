@@ -1,8 +1,9 @@
 import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
-import { collection, onSnapshot, deleteDoc, doc, setDoc, } from "firebase/firestore";
+import { collection, onSnapshot, deleteDoc, doc, setDoc, getDoc } from "firebase/firestore";
 import {db, storage} from '@/firebase'
 import { getStorage, ref as fbRef, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import { useRouter } from 'vue-router'
 
 const myCrew = "myCrew123"
 const crewCharsRef = collection(db, "Crews/"+myCrew, "Characters")
@@ -12,6 +13,7 @@ export const useSpaStore = defineStore({
   id: 'charspa',
   state: () => ({
     Characters: [],
+    Charnames: [],
     currentShip: {},
     currentCharacter: {},
     currentUser: {},
@@ -87,15 +89,10 @@ export const useSpaStore = defineStore({
           } 
           
           this.currentShip = ship
-          console.log(">>> LOAD SHIP: <<< | fetchCrewcomplete: ", this.currentShip.designation);
-          console.log(">>> LOAD SHIP: <<< | fetchCrewcomplete: .crew_upgrades.length = ", this.currentShip.crew_upgrades.length);
-    
-          
-      });
+          console.log("spaStore.fetchShip: >>> LOAD SHIP: <<< | fetchCrewcomplete: ", this.currentShip.designation);
+        });
       },
     updateShip: async ({id, data}) => {
-      console.log("DATA: ", data)
-      console.log("UPDATE portraitURL = ", data.portraitURL)
       try {
         const shipData = {
           id: data.id,
@@ -154,83 +151,100 @@ export const useSpaStore = defineStore({
         let shipID = id
         console.log("SHIP ID: ", shipID)
         const docRef = await setDoc(doc(db, "Crews", shipID), shipData);
-        console.log("Ship updated successfully!, ID:", shipID);
+        console.log("SpaStore: updateShip: Ship updated successfully!, ID:", shipID);
       } catch (error) {
         console.error("Error adding ship: ", error);
       }
     },
+
     fetchCharacters() {
       onSnapshot(crewCharsRef, async (querySnapshot) => {
-        const fbChars = [];
+        const fbChars = []
+        const nmChars = []
         await querySnapshot.forEach(async (doc) => {
-          const data = await doc.data();
-          const char = {
-            id: doc.id,
-            charname: data.charname,
-            playbook: data.playbook,
-            pb_description: data.pb_description,
-            portraitURL: data.portraitURL,
-            pbxp: data.pbxp,
-            stress: data.stress,
-            trauma: data.trauma,
-            traumatypes: data.traumatypes,
-            alias: data.alias,
-            heritage: data.heritage,
-            background: data.background,
-            vice: data.vice,
-            look: data.look,
-
-            insight_xp: data.insight_xp,
-            prowess_xp: data.prowess_xp,
-            resolve_xp: data.resolve_xp,
-
-            doctor: data.doctor,
-            hack: data.hack,
-            rig: data.rig,
-            study: data.study,
-
-            helm: data.helm,
-            scramble: data.scramble,
-            scrap: data.scrap,
-            skulk: data.skulk,
-
-            attune: data.attune,
-            command: data.command,
-            consort: data.consort,
-            sway: data.sway,
-
-            harm3: data.harm3,
-            harm2_2: data.harm2_2,
-            harm2: data.harm2,
-            harm1_2: data.harm1_2,
-            harm1: data.harm1,
-            healthclock: data.healthclock,
-
-            cred: data.cred,
-            stash: data.stash, 
-
-            armor: data.armor,
-            heavy: data.heavy,
-            special: data.special,
-
-            items: data.items,
-            s_items: data.s_items,
-
-            abilities:data.abilities,
-            notes: data.notes
-            }
-          fbChars.push(char)
+          const charId = doc.id; // get the id of the character
+          const charname = doc.data().charname
+          fbChars.push(charId)
+          nmChars.push(charname)
         });
-        this.Characters = fbChars    
-        if(!this.currentCharacter){
-          this.currentCharacter = fbChars[0]
-        }
-        
-        console.log(">>> RELOAD CHARACTER LIST <<< | fetchCharacters complete: ", this.Characters.length, " characters detected");
+        this.Characters = fbChars
+        this.Charnames = nmChars
+        // if there are any characters, select the first one
+       /*   if (fbChars.length > 0) {
+          this.currentCharacter = await this.fetchCharacterData(this.currentCharacter.id);
+        }  */
+        console.log("spaStore: >>> RELOAD CHARACTER LIST <<< | fetchCharacters complete: ", this.Characters.length, " characters detected");
       });
     },
+    
+    async fetchCharacterData(id) {
+      const docRef = doc(db, "Crews/"+myCrew, "Characters", id);
+      const docSnap = await getDoc(docRef);
+      if (docSnap.exists()) {
+        const data = docSnap.data();
+        return {
+          id: id,
+          charname: data.charname,
+          playbook: data.playbook,
+          portraitURL: data.portraitURL,
+          pb_description: data.pb_description,
+          pbxp: data.pbxp,
+          stress: data.stress,
+          trauma: data.trauma,
+          traumatypes: data.traumatypes,
+          alias: data.alias,
+          heritage: data.heritage,
+          background: data.background,
+          vice: data.vice,
+          look: data.look,
+    
+          insight_xp: data.insight_xp,
+          prowess_xp: data.prowess_xp,
+          resolve_xp: data.resolve_xp,
+    
+          doctor: data.doctor,
+          hack: data.hack,
+          rig: data.rig,
+          study: data.study,
+    
+          helm: data.helm,
+          scramble: data.scramble,
+          scrap: data.scrap,
+          skulk: data.skulk,
+    
+          attune: data.attune,
+          command: data.command,
+          consort: data.consort,
+          sway: data.sway,
+    
+          harm3: data.harm3,
+          harm2_2: data.harm2_2,
+          harm2: data.harm2,
+          harm1_2: data.harm1_2,
+          harm1: data.harm1,
+          healthclock: data.healthclock,
+    
+          cred: data.cred,
+          stash: data.stash, 
+    
+          armor: data.armor,
+          heavy: data.heavy,
+          special: data.special,
+    
+          items: data.items,
+          s_items: data.s_items,
+    
+          abilities:data.abilities,
+          notes: data.notes
+          // add any other fields you need here
+        };
+      } else {
+        console.log("SpaStore: fetchCharacterData: No such document!");
+        return null;
+      }
+    },
+
     updateCharacter: async ({id, data}) => {
-      console.log(" ooooo UPDATECHARACTER ooooo | data.charname = ", data.charname)
       try {
         const characterData = {
           id: id,
@@ -289,18 +303,21 @@ export const useSpaStore = defineStore({
         }
         let charID = id
         const docRef = await setDoc(doc(db, "Crews/"+myCrew, "Characters", charID), characterData);
-        console.log(">>> UPDATE CHARACTER <<< | Success!, ID:", characterData.charname);
+        console.log("spaStore: updateCharacter >>> UPDATED CHARACTER <<< | Success!, ID:", characterData.charname);
       } catch (error) {
-        console.error("Error adding character: ", error);
+        console.error("spaStore: updateCharacter: Error adding character: ", error);
       }
     },
-    selectCharacter(id) {
-      this.currentCharacter = this.Characters.find(c => c.id === id);
-      console.log("[][][] NEW CHARACTER SELECTED [][][] | selectCharacter called: ", this.currentCharacter.charname )
+    
+    async selectCharacter(id, router) {
+      this.currentCharacter = await this.fetchCharacterData(id);
+      console.log("spaStore.selectCharacter: [][][] NEW CHARACTER SELECTED [][][] | ", this.currentCharacter.charname )
+      router.push('/character-view')
     },
+
     charUpdate() {
       const spaStore = useSpaStore()
-      console.log('|||||||| CHARUPDATE ||||||||', this.currentCharacter.charname)
+      console.log('spaStore.charUpdate: |||||||| CHARUPDATE ||||||||', this.currentCharacter.charname)
       spaStore.updateCharacter({id: this.currentCharacter.id, data: this.currentCharacter})
     },
     shipUpdate() {
@@ -379,7 +396,7 @@ export const useSpaStore = defineStore({
       console.log("deleteAll: this.Characters = ", this.Characters);
       this.Characters.forEach(character => {
         deleteDoc(doc(db, "Crews/"+myCrew, "Characters", character.id));
-        console.log("deleted ", character.id)
+        console.log("spaStore: deleteAll: deleted ", character.id)
       });
     }
     

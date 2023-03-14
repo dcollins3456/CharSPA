@@ -144,48 +144,49 @@
             
             <!-- CREW UPGRADES -->
             <div class="crew-gear crew-upgrade">
-                <CrewUpgrade :numBoxes=2 desc="Alien Pet" />
-                <CrewUpgrade :numBoxes=1 desc="Land Transport" />
-                <CrewUpgrade :numBoxes=1 desc="Recon Drone" />
-                <CrewUpgrade :numBoxes=1 desc="Survival Gear" />
-                <CrewUpgrade :numBoxes=1 desc="Workshop" />
+                <CrewUpgrade :numBoxes=2 desc="Alien Pet" :isChecked="spaStore.isCrewUpgradeSelected('Alien Pet')" />
+                <CrewUpgrade :numBoxes=1 desc="Land Transport" :isChecked="spaStore.isCrewUpgradeSelected('Land Transport')" />
+                <CrewUpgrade :numBoxes=1 desc="Recon Drone" :isChecked="spaStore.isCrewUpgradeSelected('Recon Drone')" />
+                <CrewUpgrade :numBoxes=1 desc="Survival Gear" :isChecked="spaStore.isCrewUpgradeSelected('Survival Gear')" />
+                <CrewUpgrade :numBoxes=1 desc="Workshop" :isChecked="spaStore.isCrewUpgradeSelected('Workshop')" />
                 <img class="gloss" src="/graphics/gloss-crewgear.png" />
             </div>
             <div class="upgrades crew-upgrade">
-                <CrewUpgrade :numBoxes=1 desc="Tracers/Bugs" />
-                <CrewUpgrade :numBoxes=1 desc="Stun Weapons" />
-                <CrewUpgrade :numBoxes=2 desc="Personal Vehicles" />
-                <CrewUpgrade :numBoxes=2 desc="Hard Knocks" />
-                <CrewUpgrade :numBoxes=3 desc="Smooth Criminals" />
+                <CrewUpgrade :numBoxes=1 desc="Tracers/Bugs" :isChecked="spaStore.isCrewUpgradeSelected('Tracers/Bugs')" />
+                <CrewUpgrade :numBoxes=1 desc="Stun Weapons" :isChecked="spaStore.isCrewUpgradeSelected('Stun Weapons')" />
+                <CrewUpgrade :numBoxes=2 desc="Personal Vehicles" :isChecked="spaStore.isCrewUpgradeSelected('Personal Vehicles')" />
+                <CrewUpgrade :numBoxes=2 desc="Hard Knocks" :isChecked="spaStore.isCrewUpgradeSelected('Hard Knocks')" />
+                <CrewUpgrade :numBoxes=3 desc="Smooth Criminals" :isChecked="spaStore.isCrewUpgradeSelected('Smooth Criminals')" />
                 <img class="gloss" src="/graphics/gloss-upgrades.png" />
             </div>
             <div class="auxiliary crew-upgrade">
-                <CrewUpgrade :numBoxes=1 desc="AI Module" />
-                <CrewUpgrade :numBoxes=1 desc="Armoury" />
-                <CrewUpgrade :numBoxes=1 desc="Brig" />
-                <CrewUpgrade :numBoxes=1 desc="Galley" />
-                <CrewUpgrade :numBoxes=1 desc="Medical Bay" />
-                <CrewUpgrade :numBoxes=1 desc="Science Bay" />
-                <CrewUpgrade :numBoxes=2 desc="Shields" />
+                <CrewUpgrade :numBoxes=1 desc="AI Module" :isChecked="spaStore.isCrewUpgradeSelected('AI Module')" />
+                <CrewUpgrade :numBoxes=1 desc="Armoury" :isChecked="spaStore.isCrewUpgradeSelected('Armoury')" />
+                <CrewUpgrade :numBoxes=1 desc="Brig" :isChecked="spaStore.isCrewUpgradeSelected('Brig')" />
+                <CrewUpgrade :numBoxes=1 desc="Galley" :isChecked="spaStore.isCrewUpgradeSelected('Galley')" />
+                <CrewUpgrade :numBoxes=1 desc="Medical Bay" :isChecked="spaStore.isCrewUpgradeSelected('Medical Bay')" />
+                <CrewUpgrade :numBoxes=1 desc="Science Bay" :isChecked="spaStore.isCrewUpgradeSelected('Science Bay')" />
+                <CrewUpgrade :numBoxes=2 desc="Shields" :isChecked="spaStore.isCrewUpgradeSelected('Shields')" />
                 <img class="gloss" src="/graphics/gloss-auxiliary.png" />
             </div>
             <div class="ship-gear crew-upgrade">
-                <CrewUpgrade :numBoxes=1 desc="Holo-Emitters" />
-                <CrewUpgrade :numBoxes=1 desc="Intruder Alarm" />
-                <CrewUpgrade :numBoxes=1 desc="Land Rover" />
-                <CrewUpgrade :numBoxes=1 desc="Power Reserves" />
-                <CrewUpgrade :numBoxes=1 desc="Shuttle" />
-                <CrewUpgrade :numBoxes=1 desc="Stasis Pods" />
-                <CrewUpgrade :numBoxes=1 desc="Vault" />
+                <CrewUpgrade :numBoxes=1 desc="Holo-Emitters" :isChecked="spaStore.isCrewUpgradeSelected('Holo-Emitters')" />
+                <CrewUpgrade :numBoxes=1 desc="Intruder Alarm" :isChecked="spaStore.isCrewUpgradeSelected('Intruder Alarm')" />
+                <CrewUpgrade :numBoxes="1" desc="Land Rover" :isChecked="spaStore.isCrewUpgradeSelected('Land Rover')" />
+                <CrewUpgrade :numBoxes="1" desc="Power Reserves" :isChecked="spaStore.isCrewUpgradeSelected('Power Reserves')" />
+                <CrewUpgrade :numBoxes="1" desc="Shuttle" :isChecked="spaStore.isCrewUpgradeSelected('Shuttle')" />
+                <CrewUpgrade :numBoxes="1" desc="Stasis Pods" :isChecked="spaStore.isCrewUpgradeSelected('Stasis Pods')" />
+                <CrewUpgrade :numBoxes="1" desc="Vault" :isChecked="spaStore.isCrewUpgradeSelected('Vault')" />
                 <img class="gloss" src="/graphics/gloss-shipgear.png" />
-            </div>
-            <div class="training crew-upgrade">
-                <CrewUpgrade :numBoxes=1 desc="Insight" />
-                <CrewUpgrade :numBoxes=1 desc="Prowess" />
-                <CrewUpgrade :numBoxes=1 desc="Resolve" />
-                <CrewUpgrade :numBoxes=1 desc="Playbook" />
+                </div>
+                <div class="training crew-upgrade">
+                <CrewUpgrade :numBoxes="1" desc="Insight" :isChecked="spaStore.isCrewUpgradeSelected('Insight')" />
+                <CrewUpgrade :numBoxes="1" desc="Prowess" :isChecked="spaStore.isCrewUpgradeSelected('Prowess')" />
+                <CrewUpgrade :numBoxes="1" desc="Resolve" :isChecked="spaStore.isCrewUpgradeSelected('Resolve')" />
+                <CrewUpgrade :numBoxes="1" desc="Playbook" :isChecked="spaStore.isCrewUpgradeSelected('Playbook')" />
                 <img class="gloss" src="/graphics/gloss-training.png" />
             </div>
+            
 
             <!-- HEAT/WANTED -->
             <div class="heat">
@@ -218,8 +219,8 @@
             <!-- ABILITIES: -->
             <div class="ship-column-right">
                 <div class="ship-abilities" >
-                    <div class="ability" v-for="(item, index) in currentShip.abilities" :key="item.index" >
-                        <AbilityItem type="ship" :itemIndex="index" />
+                    <div class="ability" v-for="(ability, index) in currentShip.abilities" :key="ability.index" >
+                        <AbilityShip :ability="ability" :itemIndex="index" />
                     </div>
                 </div>
                 <div @click="()=>addAbility()" class="ship-ability-add-button">
@@ -235,8 +236,8 @@
                 <img class="ship-notes-title" src="/graphics/ship-notes-title.png" />
                 <div class="ship-notes">
                     <div class="notelist">
-                    <div class="note" v-for="(item, index) in currentShip.notes" :key="item.index" >
-                        <NoteItem type="ship" :itemIndex="index" />
+                    <div class="note" v-for="(note, index) in currentShip.notes" :key="note.index" >
+                        <NoteShip :note="note" :itemIndex="index" />
                     </div>
                     <div @click="()=>addNote()" class="notes-add-button">
                         <button>
@@ -258,8 +259,8 @@ import EditableInput from '@/components/EditableInput.vue'
 import PictureFile from '@/components/PictureFile.vue'
 import SystemsMod from '@/components/SystemsMod.vue'
 import CrewUpgrade from '@/components/crewUpgrade.vue'
-import AbilityItem from '@/components/AbilityItem.vue'
-import NoteItem from '@/components/NoteItem.vue'
+import AbilityShip from '@/components/AbilityShip.vue'
+import NoteShip from '@/components/NoteShip.vue'
 
 const spaStore = useSpaStore()
 
