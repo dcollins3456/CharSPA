@@ -3,7 +3,6 @@ import { defineStore } from 'pinia'
 import { collection, onSnapshot, deleteDoc, doc, setDoc, getDoc } from "firebase/firestore";
 import {db, storage} from '@/firebase'
 import { getStorage, ref as fbRef, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-import { useRouter } from 'vue-router'
 
 const myCrew = "myCrew123"
 const crewCharsRef = collection(db, "Crews/"+myCrew, "Characters")
@@ -169,10 +168,12 @@ export const useSpaStore = defineStore({
         });
         this.Characters = fbChars
         this.Charnames = nmChars
-        // if there are any characters, select the first one
-       /*   if (fbChars.length > 0) {
+        
+       if (fbChars.length > 0) {
+        // If the following line is removed, reactivity of the global 'currentCharacter' is lost, why?
           this.currentCharacter = await this.fetchCharacterData(this.currentCharacter.id);
-        }  */
+        }
+        // end mysterious code
         console.log("spaStore: >>> RELOAD CHARACTER LIST <<< | fetchCharacters complete: ", this.Characters.length, " characters detected");
       });
     },
@@ -309,10 +310,10 @@ export const useSpaStore = defineStore({
       }
     },
     
-    async selectCharacter(id, router) {
+    async selectCharacter(id) {
       this.currentCharacter = await this.fetchCharacterData(id);
       console.log("spaStore.selectCharacter: [][][] NEW CHARACTER SELECTED [][][] | ", this.currentCharacter.charname )
-      router.push('/character-view')
+      
     },
 
     charUpdate() {

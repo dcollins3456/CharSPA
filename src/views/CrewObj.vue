@@ -352,7 +352,7 @@ const addNote = () => {
 }
 
 onMounted(async () => {
-  spaStore.fetchShip();
+  //spaStore.fetchShip();
 })
 
 

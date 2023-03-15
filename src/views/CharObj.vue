@@ -317,7 +317,7 @@ const addNote = () => {
 onMounted(async () => {
   //console.log("CharObj >>> MOUNT <<< | fetchCharacters called from CHAROBJ. ")
   //spaStore.fetchCharacters();
-  /*  let id = "Nw31bansXkQ1R1o0Uazu";
+  /* let id = "Nw31bansXkQ1R1o0Uazu";
   if(spaStore.currentCharacter.id){
     console.log("CharObj >>> MOUNT <<< | spaStore.currentCharacter.value.id = ", spaStore.currentCharacter.id)
     id = spaStore.currentCharacter.id
@@ -326,11 +326,11 @@ onMounted(async () => {
   else{
     console.log("CharObj >>> MOUNT <<< | redirect to '/'")
     router.push('/');
-  }  */
-  currentCharacter.value = spaStore.currentCharacter
+  } */
+  //currentCharacter.value = spaStore.currentCharacter
 })
 
-/*  async function loadCharacter(id) {
+/* async function loadCharacter(id) {
   const docRef = doc(db, "Crews/"+myCrew, "Characters", id);
   const docSnap = await getDoc(docRef);
   if (docSnap.exists()) {
@@ -339,8 +339,7 @@ onMounted(async () => {
   } else {
     console.log("No such document!");
   }
-}  */
-
+} */
 </script>
 
 <style>

@@ -1,16 +1,16 @@
 @font-face {
     font-family: "Metro";
-    src: url("fonts/Metro.otf");
+    src: url("../fonts/Metro.otf");
 }
 
 @font-face {
     font-family: "OpenSans";
-    src: url("fonts/OpenSans-Semibold.ttf");
+    src: url("../fonts/OpenSans-Semibold.ttf");
 }
 
 @font-face {
     font-family: "Zekton";
-    src: url("fonts/zekton_rg.otf");
+    src: url("../fonts/zekton_rg.otf");
 }
 
 body {

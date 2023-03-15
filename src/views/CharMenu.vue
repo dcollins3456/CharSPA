@@ -4,7 +4,7 @@
         <router-link to="/ship-view">{{spaStore.currentShip.designation}}</router-link>
       </div>
       <div v-for="(character, index) in spaStore.Characters" :key="character.id" class="nav-item">
-        <a @click="spaStore.selectCharacter(character, router)">{{ spaStore.Charnames[index] }}</a>
+        <router-link to="/character-view" @click="spaStore.selectCharacter(character)">{{ spaStore.Charnames[index] }}</router-link>
       </div>
       <div class="nav-item">
         <router-link to="/add">+New</router-link>
