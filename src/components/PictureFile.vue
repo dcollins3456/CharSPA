@@ -3,7 +3,7 @@
 
       <img @click="editing = true" :src="imageURL" /> 
 
-      <div v-on:click.self="editing = false" class="modal-overlay" v-show="editing">
+      <div @click.self="editing = false" class="modal-overlay" v-show="editing">
       <form
         class="edit-item"
         @submit.prevent
@@ -14,10 +14,9 @@
           id="fileInput"
           type="file"
           ref="fileInput"
-          @change="triggerInput()"
+          @change="triggerInput"
           @keyup.enter.prevent="if(hasInput){saveFile()};" 
         />
-        
         
         <button type="button" @click="if(hasInput){saveFile(); editing = false;}" >
           <img class="image-hover" src="/graphics/save-hover.png" />

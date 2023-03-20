@@ -292,25 +292,28 @@ body {
     width: 198px;
     height: 310px;
 }
+
 .image1, .image2, .portrait{
     position: absolute;
     background: black;
     border: 6px solid black;
     overflow: hidden;
     cursor: pointer;
+    
 }
 .image1, .image2{
     height: 198px;
     width: 310px;
     left: 5px;
 }
+
 .image-border{
     position: absolute;
     border: 1px solid white;
     background: transparent;
-    width: 307px;
-    height: 195px;
-    z-index:30;
+    width: 308px;
+    height: 196px;
+    pointer-events: none;
 }
 .image1 {
     top: 194px;
@@ -391,6 +394,8 @@ body {
     padding-right: 10px;
     height: 249px;
     color: #CDCDCD;
+    width: 0;
+    height: 0;
 }
 .ship_description .look{
     position: absolute;
@@ -937,6 +942,11 @@ body {
 }
 .ship-notes{
     cursor: pointer;
+}
+
+.ship-column-right{
+    width:0;
+    height:0;
 }
 
 /* CHARACTER DESCRIPTION */
